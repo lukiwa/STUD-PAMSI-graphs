@@ -7,38 +7,81 @@
 
 #include "Node.h"
 
+//TODO
+//fix begin and end
+//copy
+//destructor
+//find
+//insert after/before node
+
+//own iterator???
 template<typename T>
 class List {
 private:
     Node<T> *head;
     Node<T> *tail;
+    std::size_t count;
 
 public:
 
     List() {
         head = nullptr;
         tail = nullptr;
+        count = 0;
     }
 
-//TODO
-    std::size_t size() {}
+    /**
+     * Returns counted nodes in the list
+     * @return  nodes in list
+     */
+    std::size_t size() {
+        return count;
+    }
 
-    bool empty() {}
+    /**
+     * Checks if the list is empty
+     * @return true if the list is empty, false otherwise
+     */
+    bool is_empty() {
+        return count == 0;
+    }
 
-    T find() {}
+    /**
+     * Gets data from the front of the list
+     * @return requested data
+     */
+    T front() {
+        if (head != nullptr) {
+            return head->data;
+        }
+    }
 
-    T front() {}
+    /**
+     * Gets data from the back of the list
+     * @return requested data
+     */
+    T back() {
+        if (tail != nullptr) {
+            return tail->data;
+        }
+    }
 
-    T back() {}
 
-    //copy
-    //destructor
-    // << operator
-    //begin
-    //end
-    //fix remove methods
-    //insert after/before node
+    /**
+     * For ranged loops
+     * @return head of the list
+     */
+    Node<T> *begin() const {
+        return head;
+    }
 
+    /**
+     * For ranged loops
+     * @return very end of the list which is nullptr
+     */
+    Node<T> *end() const {
+        return nullptr;
+    }
 
 
     /**
@@ -50,6 +93,7 @@ public:
         temp->data = data;
         temp->next = head;
         head = temp;
+        ++count;
     }
 
     /**
@@ -63,56 +107,66 @@ public:
         if (head == nullptr) {
             head = temp;
             tail = temp;
-            temp = nullptr;
         } else {
             tail->next = temp;
-            tail = temp;
+            tail = tail->next;
         }
+        ++count;
     }
 
-    /**
-     * Insert data at given position
-     * @param pos position
-     * @param data data to be inserted
-     */
-    void insert(std::size_t pos, T data) {
-        auto prev = new Node<T>();
-        auto curr = new Node<T>();
-        auto temp = new Node<T>();
-        curr = head;
-        for (std::size_t i = 1; i < pos; ++i) {
-            prev = curr;
-            curr = curr->next;
-        }
-        temp->data = data;
-        prev->next = temp;
-        temp->next = curr;
-    }
 
     /**
      * Removes first element
      */
     void pop_front() {
-        auto temp = new Node<T>();
-        temp = head;
+        if (head == nullptr)
+            return;
+
+        // Move the head pointer to the next node
+        auto curr = head;
         head = head->next;
-        delete temp;
+
+
+        delete curr;
+        --count;
     }
 
     /**
      * Removes last element
      */
     void pop_back() {
-        auto curr = new Node<T>();
-        auto prev = new Node<T>();
-        curr = head;
-        while (curr->next != nullptr) {
-            prev = curr;
-            curr = curr->next;
+        if (head == nullptr) {
+            --count;
+            return;
         }
-        tail = prev;
-        prev->next = nullptr;
-        delete curr;
+
+
+        if (head->next == nullptr) {
+            delete head;
+            --count;
+            return;
+        }
+
+
+        Node<T> *curr = head;
+        while (curr->next->next != nullptr)
+            curr = curr->next;
+
+
+        delete (curr->next);
+
+
+        curr->next = nullptr;
+        --count;
+
+    }
+
+    friend std::ostream &operator<<(std::ostream &os, const List<T> &obj) {
+        for (auto it = obj.begin(); it != obj.end(); it = it->next) {
+            os << it->data << " ";
+        }
+        os << std::endl;
+        return os;
     }
 };
 

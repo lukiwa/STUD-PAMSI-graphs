@@ -11,7 +11,7 @@ int main() {
     list.push_back(777);
 
 
-    std::cout << list.size();
+    std::cout << list;
 
     return 0;
 

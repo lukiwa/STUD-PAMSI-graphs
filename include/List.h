@@ -6,15 +6,18 @@
 #define STUD_PAMSI_GRAPHS_LIST_H
 
 #include "Node.h"
+#include "NodeIterator.h"
+
+
 
 //TODO
-//fix begin and end
+
 //copy
 //destructor
 //find
 //insert after/before node
 
-//own iterator???
+
 template<typename T>
 class List {
 private:
@@ -71,16 +74,16 @@ public:
      * For ranged loops
      * @return head of the list
      */
-    Node<T> *begin() const {
-        return head;
+    NodeIterator<T> begin() const {
+        return NodeIterator<T>(head);
     }
 
     /**
      * For ranged loops
      * @return very end of the list which is nullptr
      */
-    Node<T> *end() const {
-        return nullptr;
+    NodeIterator<T> end() const {
+        return NodeIterator<T>(nullptr);;
     }
 
 
@@ -162,10 +165,9 @@ public:
     }
 
     friend std::ostream &operator<<(std::ostream &os, const List<T> &obj) {
-        for (auto it = obj.begin(); it != obj.end(); it = it->next) {
-            os << it->data << " ";
+        for (auto it = obj.begin(); it != obj.end(); ++it) {
+            os << it << " ";
         }
-        os << std::endl;
         return os;
     }
 };

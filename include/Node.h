@@ -5,12 +5,14 @@
 #ifndef STUD_PAMSI_GRAPHS_NODE_H
 #define STUD_PAMSI_GRAPHS_NODE_H
 
-#include <bits/unique_ptr.h>
+#include <memory>
 
 template<typename T>
 struct Node {
     T data;
-    Node *next;
+    Node<T> *next;
+    // std::shared_ptr<Node<T>> next;
+
 
 };
 

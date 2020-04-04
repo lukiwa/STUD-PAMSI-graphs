@@ -10,8 +10,7 @@
 template<typename T>
 struct Node {
     T data;
-    Node<T> *next;
-    // std::shared_ptr<Node<T>> next;
+    std::shared_ptr<Node<T>> next;
 
 
 };

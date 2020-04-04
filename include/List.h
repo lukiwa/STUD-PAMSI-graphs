@@ -21,8 +21,8 @@
 template<typename T>
 class List {
 private:
-    Node<T> *head;
-    Node<T> *tail;
+    std::shared_ptr<Node<T>> head;
+    std::shared_ptr<Node<T>> tail;
     std::size_t count;
 
 public:
@@ -104,7 +104,7 @@ public:
      * @param data data to be inserted
      */
     void push_back(T data) {
-        auto temp = new Node<T>();
+        auto temp = std::make_shared<Node<T>>();
         temp->data = data;
         temp->next = nullptr;
         if (head == nullptr) {
@@ -129,8 +129,7 @@ public:
         auto curr = head;
         head = head->next;
 
-
-        delete curr;
+        curr.reset();
         --count;
     }
 
@@ -145,7 +144,7 @@ public:
 
 
         if (head->next == nullptr) {
-            delete head;
+            head.reset();
             --count;
             return;
         }
@@ -156,7 +155,7 @@ public:
             curr = curr->next;
 
 
-        delete (curr->next);
+        (curr->next).reset();
 
 
         curr->next = nullptr;
@@ -165,9 +164,11 @@ public:
     }
 
     friend std::ostream &operator<<(std::ostream &os, const List<T> &obj) {
-        for (auto it = obj.begin(); it != obj.end(); ++it) {
-            os << it << " ";
+
+        for (auto i: obj) {
+            os << i << " ";
         }
+
         return os;
     }
 };

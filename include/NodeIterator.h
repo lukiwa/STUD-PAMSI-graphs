@@ -9,11 +9,8 @@
 
 template<typename T>
 struct NodeIterator {
-    NodeIterator(Node<T> *curr) : curr(curr) {}
+    NodeIterator(std::shared_ptr<Node<T>> curr) : curr(curr) {}
 
-    ~NodeIterator() {
-        delete (curr);
-    }
 
     NodeIterator &operator++() {
         curr = curr->next;
@@ -40,7 +37,7 @@ struct NodeIterator {
         return os;
     }
 
-    Node<T> *curr;
+    std::shared_ptr<Node<T>> curr;
 };
 
 

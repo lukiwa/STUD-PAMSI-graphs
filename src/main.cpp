@@ -1,5 +1,6 @@
 #include <iostream>
 #include "List.h"
+#include "NodeIterator.h"
 
 int main() {
     List<int> list;

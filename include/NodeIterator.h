@@ -9,7 +9,8 @@
 
 template<typename T>
 struct NodeIterator {
-    NodeIterator(std::shared_ptr<Node<T>> curr) : curr(curr) {}
+    NodeIterator(std::shared_ptr<Node<T>> curr) :
+            curr(curr) {}
 
 
     NodeIterator &operator++() {
@@ -18,12 +19,12 @@ struct NodeIterator {
     }
 
     NodeIterator operator++(int) {
-        NodeIterator retVal = *this;
+        NodeIterator ret_val = *this;
         ++(*this);
-        return retVal;
+        return ret_val;
     }
 
-    T *operator->() const { return &curr->data; }
+    //  T *operator->() const { return &curr->data; }
 
     T &operator*() const { return curr->data; }
 

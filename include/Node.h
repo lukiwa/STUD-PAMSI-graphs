@@ -9,6 +9,10 @@
 
 template<typename T>
 struct Node {
+    Node(const T &data, const std::shared_ptr<Node<T>> &next) :
+            data(data),
+            next(next) {}
+
     T data;
     std::shared_ptr<Node<T>> next;
 

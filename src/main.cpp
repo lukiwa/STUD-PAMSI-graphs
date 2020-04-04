@@ -18,7 +18,11 @@ int main() {
     list.push_back(999);
 
     list.pop_back();
-    std::cout << list;
+
+    list.pop_selected(52);
+
+    std::cout << list << std::endl;
+    std::cout << list.is_empty();
 
     return 0;
 

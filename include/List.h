@@ -11,11 +11,9 @@
 
 
 //TODO
-
 //copy
 //destructor
-//find
-//insert after/before node
+//move to cpp
 
 
 template<typename T>
@@ -132,6 +130,24 @@ public:
         ++count;
     }
 
+    /**
+     * Allows to add data before node with given data (first one with given data)
+     * @param prev_data data contained in prev_data node
+     * @param new_data data which is to be contained in new node
+     */
+    void push_after(const T &prev_data, const T &new_data) {
+
+        auto curr = head;
+
+        while (curr != tail && curr->data != prev_data) {
+            curr = curr->next;
+        }
+
+
+        auto new_node = std::make_shared<Node<T>>(new_data, curr->next);
+        curr->next = new_node;
+        ++count;
+    }
 
 /**
  * Removes first element
@@ -139,8 +155,6 @@ public:
     void pop_front() {
         if (head == nullptr)
             return;
-
-        // Move the head pointer to the next node
         auto curr = head;
         head = head->next;
 
@@ -174,6 +188,38 @@ public:
 
         curr->next = nullptr;
         --count;
+
+    }
+
+    /**
+     * removes node with selected data
+     * @param data_selected node containing that data will be removed
+     */
+    void pop_selected(const T &data_selected) {
+        if (head->data == data_selected) {
+            pop_front();
+            return;
+        }
+        if (tail->data == data_selected) {
+            pop_back();
+            return;
+        }
+
+        auto curr = head;
+
+        while (curr->next->data != data_selected) {
+            curr = curr->next;
+            if (curr == tail) {
+                return;
+            }
+        }
+
+
+        auto temp = curr->next;
+        curr->next = temp->next;
+        temp.reset();
+        --count;
+
 
     }
 

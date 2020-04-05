@@ -10,7 +10,7 @@
 
 
 
-//TODO
+//TOD
 //copy
 //destructor
 //move to cpp
@@ -103,6 +103,42 @@ public:
         return NodeIterator<T>(nullptr);;
     }
 
+    /**
+     * Checks if node with given data is present in the list
+     * @param data data which is supposed to be contained
+     * @return true if it is present, false otherwise
+     */
+    bool is_present(T data) {
+        auto curr = head;
+
+        if (tail->data == data) {
+            return true;
+        }
+
+        while (curr != tail) {
+            if (curr->data == data) {
+                return true;
+            }
+            curr = curr->next;
+        }
+        return false;
+    }
+
+    //TODO
+    void update(T old_data, T new_data) {
+        auto curr = head;
+
+        if (tail->data == old_data) {
+            tail->data = new_data;
+        }
+
+        while (curr != tail) {
+            if (curr->data == old_data) {
+                curr->data = new_data;
+            }
+            curr = curr->next;
+        }
+    }
 
 /**
  * Adds element at the front

@@ -10,14 +10,14 @@
 
 
 class Graph {
-private:
+public: //TODO test
     List<Edge> edges;
     List<Vertex> vertices;
     List<Vertex> *adj_list;
 public:
     void add_vertex(int id);
 
-    bool add_edge(Vertex from, Vertex to, unsigned weight = 0);
+    bool add_single_edge(const Vertex &from, const Vertex &to, unsigned weight = 0);
 
     Graph(std::size_t number_of_vertices);
 

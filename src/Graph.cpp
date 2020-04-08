@@ -7,11 +7,29 @@
 
 void Graph::add_vertex(int id) {
     vertices.push_back(Vertex{id});
+
 }
 
-bool Graph::add_edge(Vertex from, Vertex to, unsigned int weight) {
-    return vertices.is_present(from) && vertices.is_present(to);
+bool Graph::add_single_edge(const Vertex &from, const Vertex &to, unsigned int weight) {
+    if (!(vertices.is_present(from) && vertices.is_present(to))) {
+        return false;
+    }
+    Edge new_edge{from, to, weight};
+    Vertex new_from{from.id, from.edges};
+    Vertex new_to{to.id, to.edges};
 
+
+    edges.push_back(new_edge);
+    new_from.edges.push_back(new_edge);
+    new_to.edges.push_back(new_edge);
+
+
+    vertices.update(from, new_from);
+    vertices.update(to, new_to);
+
+    //std::cout << vertices.front();
+
+    return true;
 
 }
 

@@ -150,7 +150,7 @@ public:
         ++count;
     }
 
-/**
+/** TODO FIX
  * Adds data at the back
  * @param data data to be inserted
  */
@@ -267,7 +267,12 @@ public:
 
         return os;
     }
-
+/*
+    List<T> &operator=(const List<T> &rhs) {
+        this->front() = rhs.front();
+        this->front() = rhs.back();
+    }
+*/
 };
 
 

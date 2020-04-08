@@ -5,15 +5,13 @@
 
 
 int main() {
-    /*
+
     Graph graph(10);
-    std::cout << graph.add_edge(Vertex{5}, Vertex{7}) << std::endl;
-    */
+    graph.add_single_edge(Vertex{0}, Vertex{2}, 10);
+    graph.add_single_edge(Vertex{0}, Vertex{3}, 17);
 
-
-
-
-
+    std::cout << graph.vertices.front();
+    // std::cout << graph.edges;
     return 0;
 
 }

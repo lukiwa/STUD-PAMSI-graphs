@@ -259,6 +259,58 @@ public:
 
     }
 
+    T at(std::size_t index) const {
+        if (index < count - 1) {
+
+
+            auto curr = head;
+
+
+            std::size_t i = 0;
+            while (curr != nullptr) {
+                if (i == index)
+                    return (curr->data);
+                i++;
+                curr = curr->next;
+            }
+        }
+    }
+
+
+    void pop_at(std::size_t index) {
+
+        if (head == nullptr) {
+            return;
+        }
+
+
+        auto curr = head;
+
+        if (index == 0) {
+            head = head->next;
+            curr.reset();
+            --count;
+            return;
+        }
+
+
+        for (int i = 0; curr != nullptr && i < index - 1; ++i) {
+            curr = curr->next;
+        }
+
+
+        if (curr == nullptr || curr->next == nullptr) {
+            return;
+        }
+
+
+        auto next = curr->next->next;
+        curr->next.reset();
+
+        curr->next = next;
+        --count;
+    }
+
     friend std::ostream &operator<<(std::ostream &os, const List<T> &obj) {
 
         for (const auto &i: obj) {
@@ -267,12 +319,7 @@ public:
 
         return os;
     }
-/*
-    List<T> &operator=(const List<T> &rhs) {
-        this->front() = rhs.front();
-        this->front() = rhs.back();
-    }
-*/
+
 };
 
 

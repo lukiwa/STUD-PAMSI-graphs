@@ -6,12 +6,25 @@
 
 int main() {
 
-    Graph graph(10);
-    graph.add_single_edge(Vertex{0}, Vertex{2}, 10);
-    graph.add_single_edge(Vertex{0}, Vertex{3}, 17);
 
-    std::cout << graph.vertices.front();
-    // std::cout << graph.edges;
+    Graph graph{};
+    graph.insert_vertex(0);
+    graph.insert_vertex(1);
+    graph.insert_vertex(2);
+    graph.insert_vertex(3);
+    graph.insert_vertex(69);
+
+
+    graph.insert_edge(0, 1, 420);
+    std::cout << graph << std::endl;
+
+    graph.insert_edge(0, 3, 1337);
+    std::cout << graph << std::endl;
+
+    graph.insert_edge(2, 69, 888);
+    std::cout << graph << std::endl;
+
+
     return 0;
 
 }

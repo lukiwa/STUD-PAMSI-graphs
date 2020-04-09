@@ -6,20 +6,28 @@
 #define STUD_PAMSI_GRAPHS_GRAPH_H
 
 #include "List.h"
-#include "Edge.h"
-
+#include <memory>
+#include <exception>
+#include "Vertex.h"
 
 class Graph {
-public: //TODO test
-    List<Edge> edges;
-    List<Vertex> vertices;
-    List<Vertex> *adj_list;
 public:
-    void add_vertex(int id);
+    std::size_t number_of_edges;
+    List<Vertex> vertices;
+    List<Edge> adj_list;
 
-    bool add_single_edge(const Vertex &from, const Vertex &to, unsigned weight = 0);
+public:
+    Graph();
 
-    Graph(std::size_t number_of_vertices);
+    bool insert_vertex(std::size_t id);
+
+    bool insert_edge(std::size_t from, std::size_t to, unsigned weight);
+
+    bool remove_edge(const Edge &edge);
+
+    bool remove_vertex(std::size_t id);
+
+    friend std::ostream &operator<<(std::ostream &os, const Graph &obj);
 
 };
 

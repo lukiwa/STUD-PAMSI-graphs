@@ -5,37 +5,29 @@
 #ifndef STUD_PAMSI_GRAPHS_VERTEX_H
 #define STUD_PAMSI_GRAPHS_VERTEX_H
 
-#include "List.h"
-#include "Edge.h"
+
 #include <iostream>
 #include <sstream>
-
-class Edge;
+#include "Edge.h"
+#include "List.h"
 
 struct Vertex {
-    int id;
-    List<Edge> edges;
+    std::size_t data;
+    List<std::size_t> edges;
 
     ~Vertex() = default;
 
-    bool operator==(Vertex v) {
-        return v.id == this->id;
+    bool operator==(const Vertex &v) {
+        return v.data == this->data;
     }
 
-    bool operator!=(Vertex v) {
-        return v.id != this->id;
-    }
-
-    //TODO FIX
-    void add_edge(const Edge &edge) {
-        edges.push_back(edge);
+    bool operator!=(const Vertex &v) {
+        return v.data != this->data;
     }
 
 
     friend std::ostream &operator<<(std::ostream &os, const Vertex &obj) {
-        os << obj.id << " ";
-        os << obj.edges << " ";
-
+        os << obj.data;
         return os;
     }
 

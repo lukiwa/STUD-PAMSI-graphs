@@ -9,14 +9,11 @@
 #include "NodeIterator.h"
 
 
-
-//TOD
-//copy
-//destructor
-//move to cpp
-
-
 template<typename T>
+/**
+ * @brief Single linked list with tail
+ * @tparam T type of data in list
+ */
 class List {
 private:
     std::shared_ptr<Node<T>> head;
@@ -31,7 +28,7 @@ public:
 
 
 /**
- * Returns counted nodes in the list
+ * @brief Returns counted nodes in the list
  * @return  nodes in list
  */
     std::size_t size() const {
@@ -39,7 +36,7 @@ public:
     }
 
 /**
- * Checks if the list is empty
+ * @brief Checks if the list is empty
  * @return true if the list is empty, false otherwise
  */
     bool is_empty() const {
@@ -47,7 +44,7 @@ public:
     }
 
 /**
- * Gets data from the front of the list, allows editing
+ * @brief Gets data from the front of the list, allows editing
  * @return requested data
  */
     T &front() {
@@ -57,7 +54,7 @@ public:
     }
 
 /**
- * Gets data from the back of the list, allows editing
+ * @brief Gets data from the back of the list, allows editing
  * @return requested data
  */
     T &back() {
@@ -67,7 +64,7 @@ public:
     }
 //-----------------------------------------
 /**
- * Gets data from the front of the list, do not allow editing
+ * @brief Gets data from the front of the list, do not allow editing
  * @return requested data
  */
     const T &front() const {
@@ -77,7 +74,7 @@ public:
     }
 
 /**
- * Gets data from the back of the list, do not allow editing
+ * @brief Gets data from the back of the list, do not allow editing
  * @return requested data
  */
     const T &back() const {
@@ -88,7 +85,7 @@ public:
 
 
 /**
- * For ranged loops
+ * @brief For ranged loops
  * @return head of the list
  */
     NodeIterator<T> begin() const {
@@ -96,7 +93,7 @@ public:
     }
 
 /**
- * For ranged loops
+ * @brief For ranged loops
  * @return very end of the list which is nullptr
  */
     NodeIterator<T> end() const {
@@ -104,11 +101,14 @@ public:
     }
 
     /**
-     * Checks if node with given data is present in the list
+     * @brief Checks if node with given data is present in the list
      * @param data data which is supposed to be contained
      * @return true if it is present, false otherwise
      */
     bool is_present(T data) {
+        if (head == nullptr || tail == nullptr) {
+            return false;
+        }
         auto curr = head;
 
         if (tail->data == data) {
@@ -124,7 +124,11 @@ public:
         return false;
     }
 
-    //TODO
+    /**
+     * @brief Changes content of node with given data (first found)
+     * @param old_data old data in node
+     * @param new_data new data in node
+     */
     void update(T old_data, T new_data) {
         auto curr = head;
 
@@ -141,21 +145,23 @@ public:
     }
 
 /**
- * Adds element at the front
+ * @brief Adds element at the front
  * @param data data to be inserted
  */
     void push_front(const T &data) {
-        auto temp = std::make_shared<Node<T>>(data, head);
+        auto temp = std::make_shared<Node<T>>
+                (data, head);
         head = temp;
         ++count;
     }
 
-/** TODO FIX
- * Adds data at the back
- * @param data data to be inserted
- */
+    /**
+     * @brief Adds data at the back
+     * @param data data to be inserted
+     */
     void push_back(const T &data) {
-        auto temp = std::make_shared<Node<T>>(data, nullptr);
+        auto temp = std::make_shared<Node<T>>
+                (data, nullptr);
         if (head == nullptr) {
             head = temp;
             tail = temp;
@@ -167,7 +173,7 @@ public:
     }
 
     /**
-     * Allows to add data before node with given data (first one with given data)
+     * @brief Allows to add data before node with given data (first one with given data)
      * @param prev_data data contained in prev_data node
      * @param new_data data which is to be contained in new node
      */
@@ -180,13 +186,14 @@ public:
         }
 
 
-        auto new_node = std::make_shared<Node<T>>(new_data, curr->next);
+        auto new_node = std::make_shared<Node<T>>
+                (new_data, curr->next);
         curr->next = new_node;
         ++count;
     }
 
 /**
- * Removes first element
+ *@brief Removes first element
  */
     void pop_front() {
         if (head == nullptr)
@@ -199,7 +206,7 @@ public:
     }
 
 /**
- * Removes last element
+ * @brief Removes last element
  */
     void pop_back() {
         if (head == nullptr) {
@@ -228,7 +235,7 @@ public:
     }
 
     /**
-     * removes node with selected data
+     * @brief removes node with selected data
      * @param data_selected node containing that data will be removed
      */
     void pop_selected(const T &data_selected) {
@@ -259,8 +266,13 @@ public:
 
     }
 
+    /**
+     * @brief Returns content of node at given index (from 0)
+     * @param index index of node
+     * @return data stored in node at index
+     */
     T at(std::size_t index) const {
-        if (index < count - 1) {
+        if (index < count) {
 
 
             auto curr = head;
@@ -276,7 +288,10 @@ public:
         }
     }
 
-
+    /**
+     * @brief Removes element at given index(from 0)
+     * @param index node at that index will be deleted
+     */
     void pop_at(std::size_t index) {
 
         if (head == nullptr) {
@@ -311,6 +326,9 @@ public:
         --count;
     }
 
+    /**
+     * @brief Display list
+     */
     friend std::ostream &operator<<(std::ostream &os, const List<T> &obj) {
 
         for (const auto &i: obj) {

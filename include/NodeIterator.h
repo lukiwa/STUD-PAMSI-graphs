@@ -8,7 +8,13 @@
 #include "Node.h"
 
 template<typename T>
+/**
+ * @brief Iterator for list
+ * @tparam T type of data in list
+ */
 struct NodeIterator {
+    std::shared_ptr<Node<T>> curr;
+
     NodeIterator(std::shared_ptr<Node<T>> curr) :
             curr(curr) {}
 
@@ -38,7 +44,7 @@ struct NodeIterator {
         return os;
     }
 
-    std::shared_ptr<Node<T>> curr;
+
 };
 
 

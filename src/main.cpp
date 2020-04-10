@@ -24,6 +24,7 @@ int main() {
     graph.insert_edge(2, 69, 888);
     std::cout << graph << std::endl;
 
+    std::cout << graph.incident_edges(69);
 
     return 0;
 

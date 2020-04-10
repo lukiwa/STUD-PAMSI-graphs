@@ -8,6 +8,10 @@
 #include <memory>
 
 template<typename T>
+/**
+ * @brief Node of the list
+ * @tparam T type of elements stored in list
+ */
 struct Node {
     Node(const T &data, const std::shared_ptr<Node<T>> &next) :
             data(data),

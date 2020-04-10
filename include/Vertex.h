@@ -11,9 +11,13 @@
 #include "Edge.h"
 #include "List.h"
 
+/**
+ * @brief vertex of the graph
+ */
 struct Vertex {
-    std::size_t data;
-    List<std::size_t> edges;
+    std::size_t data; //id
+    List<std::size_t> edges; //indices of edges at adj list
+
 
     ~Vertex() = default;
 
@@ -21,11 +25,14 @@ struct Vertex {
         return v.data == this->data;
     }
 
+
     bool operator!=(const Vertex &v) {
         return v.data != this->data;
     }
 
-
+    /**
+     * @brief Display Vertex
+     */
     friend std::ostream &operator<<(std::ostream &os, const Vertex &obj) {
         os << obj.data;
         return os;

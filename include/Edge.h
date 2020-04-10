@@ -8,21 +8,22 @@
 #include <iostream>
 #include <sstream>
 
-
+/**
+ * @brief Edge of the graph
+ */
 struct Edge {
     std::size_t from_id;
     std::size_t to_id;
     unsigned weight;
 
     friend std::ostream &operator<<(std::ostream &os, const Edge &obj) {
-        std::ostringstream buff;
 
-        buff << "{" <<
-             obj.from_id << " " <<
-             obj.to_id << " " <<
-             obj.weight << "}";
 
-        os << buff.str();
+        os << "{" <<
+           obj.from_id << " " <<
+           obj.to_id << " " <<
+           obj.weight << "}";
+
 
         return os;
     }

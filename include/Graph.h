@@ -10,8 +10,11 @@
 #include <exception>
 #include "Vertex.h"
 
+/**
+ * @brief graph class
+ */
 class Graph {
-public:
+private:
     std::size_t number_of_edges;
     List<Vertex> vertices;
     List<Edge> adj_list;
@@ -19,9 +22,14 @@ public:
 public:
     Graph();
 
+    //bool??
     bool insert_vertex(std::size_t id);
 
-    bool insert_edge(std::size_t from, std::size_t to, unsigned weight);
+    //bool??
+    bool insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight);
+
+    List<Edge> incident_edges(std::size_t id) const;
+
 
     bool remove_edge(const Edge &edge);
 

@@ -8,7 +8,7 @@
  * @brief Constructor, sets initial number of edges as 0
  */
 AdjListGraph::AdjListGraph() {
-    number_of_edges = 0;
+
 }
 
 /**
@@ -16,7 +16,6 @@ AdjListGraph::AdjListGraph() {
  * @param number_of_vertices
  */
 AdjListGraph::AdjListGraph(std::size_t number_of_vertices) {
-    number_of_edges = 0;
     for (std::size_t i = 0; i < number_of_vertices; ++i) {
         insert_vertex(i);
     }
@@ -52,19 +51,19 @@ bool AdjListGraph::insert_edge(std::size_t from_id, std::size_t to_id, unsigned 
         return false;
     }
 
-    std::size_t new_edge_index = number_of_edges++;
-    adj_list.push_back(AdjListEdge{from_id, to_id, weight});
+    auto new_edge = AdjListEdge{from_id, to_id, weight};
+    adj_list.push_back(new_edge);
 
 
     for (auto &i: vertices) {
         if (i.data == from_id) {
-            i.edges.push_back(new_edge_index);
+            i.edges.push_back(adj_list.back());
         }
     }
 
     for (auto &j: vertices) {
         if (j.data == to_id) {
-            j.edges.push_back(new_edge_index);
+            j.edges.push_back(adj_list.back());
         }
     }
 
@@ -77,16 +76,14 @@ bool AdjListGraph::insert_edge(std::size_t from_id, std::size_t to_id, unsigned 
  * @param id id of vertex
  * @return list of incident edges
  */
-List<AdjListEdge> AdjListGraph::incident_edges(std::size_t id) const {
+const List<AdjListEdge> AdjListGraph::incident_edges(std::size_t id) const {
     List<AdjListEdge> return_list;
     for (auto &i: vertices) {
         if (i.data == id) {
-            for (auto j: i.edges) {
-                return_list.push_back(adj_list.at(j));
-            }
+            return i.edges;
         }
     }
-    return return_list;
+
 }
 
 /**
@@ -137,6 +134,7 @@ std::size_t AdjListGraph::opposite(std::size_t vertex_id, const AdjListEdge &edg
  *         id's are equal or vertices do not exists
  */
 bool AdjListGraph::are_adjacent(std::size_t first_id, std::size_t second_id) const {
+    /*
     if (first_id == second_id) {
         return false;
     }
@@ -171,7 +169,7 @@ bool AdjListGraph::are_adjacent(std::size_t first_id, std::size_t second_id) con
         }
     }
     return false;
-
+*/
 }
 
 /**
@@ -232,7 +230,7 @@ std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj) {
     for (const auto &i: obj.vertices) {
         os << i.data << " ";
         for (auto j: i.edges) {
-            os << obj.adj_list.at(j) << " ";
+            os << j << " ";
         }
         os << std::endl;
     }
@@ -242,13 +240,50 @@ std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj) {
 
 }
 
-//TODO not working
-bool AdjListGraph::remove_edge(const AdjListEdge &edge) {
+/**
+ * @brief Removes edge
+ * @param edge given edge
+ */
+void AdjListGraph::remove_edge(const AdjListEdge &edge) {
+    //reverse edge, not directed graph
+    auto rev_edge = AdjListEdge{edge.to_id, edge.from_id, edge.weight};
+
+
+    adj_list.pop_selected(edge);
+    adj_list.pop_selected(rev_edge);
+
+    for (auto &i: vertices) {
+        i.edges.pop_selected(edge);
+        i.edges.pop_selected(rev_edge);
+    }
+
 
 }
 
-//TODO not working
-bool AdjListGraph::remove_vertex(std::size_t data) {
+/**
+ * @brief Removes vertex and all edges coming from/to it
+ * @param data id of the vertex
+ */
+void AdjListGraph::remove_vertex(std::size_t data) {
+
+    List<AdjListEdge> edges_list;
+
+    //find list of vertices of given object
+    for (auto &i: vertices) {
+        if (i.data == data) {
+            edges_list = i.edges;
+        }
+    }
+
+    //remove edges from vertices that contain it
+    for (auto &i: vertices) {
+        for (auto j: edges_list) {
+            i.edges.pop_selected(j);
+        }
+    }
+
+    //remove vertex from list
+    vertices.pop_selected(AdjListVertex{data});
 
 
 }

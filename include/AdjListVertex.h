@@ -16,7 +16,7 @@
  */
 struct AdjListVertex {
     std::size_t data; //id (and data at the same time)
-    List<std::size_t> edges; //indices of edges at adj list
+    List<AdjListEdge> edges; //indices of edges at adj list
 
 
     ~AdjListVertex() = default;

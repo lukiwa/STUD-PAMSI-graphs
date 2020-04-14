@@ -22,20 +22,34 @@ private:
 public:
     Graph();
 
-    //bool??
     bool insert_vertex(std::size_t id);
 
-    //bool??
     bool insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight);
 
     List<Edge> incident_edges(std::size_t id) const;
 
+    const List<Vertex> &get_vertices() const;
 
-    bool remove_edge(const Edge &edge);
+    const List<Edge> &get_edges() const;
 
-    bool remove_vertex(std::size_t id);
+    List<std::size_t> end_vertices(const Edge &edge) const;
+
+    std::size_t opposite(std::size_t vertex_id, const Edge &edge) const;
+
+    bool are_adjacent(std::size_t v, std::size_t u) const;
+
+    bool replace(const Edge &edge, unsigned new_weight);
+
+    bool replace(std::size_t old_id, std::size_t new_id);
+
 
     friend std::ostream &operator<<(std::ostream &os, const Graph &obj);
+
+    //not working
+    bool remove_edge(const Edge &edge);
+
+    //not working
+    bool remove_vertex(std::size_t id);
 
 };
 

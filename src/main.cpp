@@ -16,15 +16,13 @@ int main() {
 
 
     graph.insert_edge(0, 1, 420);
-    std::cout << graph << std::endl;
-
     graph.insert_edge(0, 3, 1337);
+    graph.insert_edge(2, 69, 94);
     std::cout << graph << std::endl;
 
-    graph.insert_edge(2, 69, 888);
-    std::cout << graph << std::endl;
+    graph.replace(69, 9);
 
-    std::cout << graph.incident_edges(69);
+    std::cout << graph << std::endl;
 
     return 0;
 

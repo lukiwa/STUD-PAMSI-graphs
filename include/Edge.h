@@ -16,6 +16,19 @@ struct Edge {
     std::size_t to_id;
     unsigned weight;
 
+
+    bool operator==(const Edge &e) {
+        if (this->from_id == e.from_id) {
+            if (this->to_id == e.to_id) {
+                if (this->weight == e.weight) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
     friend std::ostream &operator<<(std::ostream &os, const Edge &obj) {
 
 

@@ -105,7 +105,7 @@ public:
      * @param data data which is supposed to be contained
      * @return true if it is present, false otherwise
      */
-    bool is_present(T data) {
+    bool is_present(T data) const {
         if (head == nullptr || tail == nullptr) {
             return false;
         }

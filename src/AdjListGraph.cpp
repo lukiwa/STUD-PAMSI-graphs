@@ -2,26 +2,40 @@
 // Created by lukasz-lap on 04.04.2020.
 //
 
-#include "Graph.h"
+#include "AdjListGraph.h"
 
 /**
  * @brief Constructor, sets initial number of edges as 0
  */
-Graph::Graph() {
+AdjListGraph::AdjListGraph() {
     number_of_edges = 0;
 }
+
+/**
+ * Allows adding vertices during constructions
+ * @param number_of_vertices
+ */
+AdjListGraph::AdjListGraph(std::size_t number_of_vertices) {
+    number_of_edges = 0;
+    for (std::size_t i = 0; i < number_of_vertices; ++i) {
+        insert_vertex(i);
+    }
+
+
+}
+
 
 /**
  * @brief Allows inserting vertex to the graph
  * @param id id of the new vertex
  * @return false if there is already vertex with given id
  */
-bool Graph::insert_vertex(std::size_t id) {
+bool AdjListGraph::insert_vertex(std::size_t id) {
     //if there is vertex with such id
-    if (vertices.is_present(Vertex{id})) {
+    if (vertices.is_present(AdjListVertex{id})) {
         return false;
     }
-    vertices.push_back(Vertex{id});
+    vertices.push_back(AdjListVertex{id});
     return true;
 }
 
@@ -32,14 +46,14 @@ bool Graph::insert_vertex(std::size_t id) {
  * @param weight cost of the edge
  * @return false if there aren't vertices with given id's
  */
-bool Graph::insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight) {
+bool AdjListGraph::insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight) {
     //if there aren't vertices with given id's
-    if (!vertices.is_present(Vertex{from_id}) || !vertices.is_present(Vertex{to_id})) {
+    if (!vertices.is_present(AdjListVertex{from_id}) || !vertices.is_present(AdjListVertex{to_id})) {
         return false;
     }
 
     std::size_t new_edge_index = number_of_edges++;
-    adj_list.push_back(Edge{from_id, to_id, weight});
+    adj_list.push_back(AdjListEdge{from_id, to_id, weight});
 
 
     for (auto &i: vertices) {
@@ -63,8 +77,8 @@ bool Graph::insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight)
  * @param id id of vertex
  * @return list of incident edges
  */
-List<Edge> Graph::incident_edges(std::size_t id) const {
-    List<Edge> return_list;
+List<AdjListEdge> AdjListGraph::incident_edges(std::size_t id) const {
+    List<AdjListEdge> return_list;
     for (auto &i: vertices) {
         if (i.data == id) {
             for (auto j: i.edges) {
@@ -79,11 +93,11 @@ List<Edge> Graph::incident_edges(std::size_t id) const {
  * @brief Gets list of all vertices in graph
  * @return list of vertices
  */
-const List<Vertex> &Graph::get_vertices() const {
+const List<AdjListVertex> &AdjListGraph::get_vertices() const {
     return vertices;
 }
 
-const List<Edge> &Graph::get_edges() const {
+const List<AdjListEdge> &AdjListGraph::get_edges() const {
     return adj_list;
 }
 
@@ -92,7 +106,7 @@ const List<Edge> &Graph::get_edges() const {
  * @param edge given edge at graph
  * @return 2 element list - (from_id, to_id)
  */
-List<std::size_t> Graph::end_vertices(const Edge &edge) const {
+List<std::size_t> AdjListGraph::end_vertices(const AdjListEdge &edge) const {
     List<std::size_t> return_list;
     return_list.push_back(edge.from_id);
     return_list.push_back(edge.to_id);
@@ -105,7 +119,7 @@ List<std::size_t> Graph::end_vertices(const Edge &edge) const {
  * @param edge edge connecting two vertices
  * @return id of second vertex
  */
-std::size_t Graph::opposite(std::size_t vertex_id, const Edge &edge) const {
+std::size_t AdjListGraph::opposite(std::size_t vertex_id, const AdjListEdge &edge) const {
     if (vertex_id == edge.from_id) {
         return edge.to_id;
     }
@@ -122,16 +136,16 @@ std::size_t Graph::opposite(std::size_t vertex_id, const Edge &edge) const {
  * @return true is are adjacent, false if there are not adjacent,
  *         id's are equal or vertices do not exists
  */
-bool Graph::are_adjacent(std::size_t first_id, std::size_t second_id) const {
+bool AdjListGraph::are_adjacent(std::size_t first_id, std::size_t second_id) const {
     if (first_id == second_id) {
         return false;
     }
 
     //if vertices exists
-    if (!vertices.is_present(Vertex{first_id}) || !vertices.is_present(Vertex{second_id})) {
+    if (!vertices.is_present(AdjListVertex{first_id}) || !vertices.is_present(AdjListVertex{second_id})) {
         return false;
     }
-    Vertex vertex;
+    AdjListVertex vertex;
 
     //find vertex with lesser edges
     for (auto &i: vertices) {
@@ -166,7 +180,7 @@ bool Graph::are_adjacent(std::size_t first_id, std::size_t second_id) const {
  * @param new_weight new weight
  * @return true if replaced, false if not found given edge
  */
-bool Graph::replace(const Edge &edge, unsigned new_weight) {
+bool AdjListGraph::replace(const AdjListEdge &edge, unsigned new_weight) {
     for (auto i: adj_list) {
         if (i == edge) {
             i.weight = new_weight;
@@ -182,12 +196,12 @@ bool Graph::replace(const Edge &edge, unsigned new_weight) {
  * @param new_id new id
  * @return  true if replaced, false if not found
  */
-bool Graph::replace(std::size_t old_id, std::size_t new_id) {
-    if (!vertices.is_present(Vertex{old_id})) {
+bool AdjListGraph::replace(std::size_t old_id, std::size_t new_id) {
+    if (!vertices.is_present(AdjListVertex{old_id})) {
         return false;
     }
-    Vertex vertex_old;
-    Vertex vertex_new;
+    AdjListVertex vertex_old;
+    AdjListVertex vertex_new;
 
     for (auto &i: vertices) {
         if (i.data == old_id) {
@@ -212,7 +226,7 @@ bool Graph::replace(std::size_t old_id, std::size_t new_id) {
 /**
  * @brief Display graph as adjacency list
  */
-std::ostream &operator<<(std::ostream &os, const Graph &obj) {
+std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj) {
 
 
     for (const auto &i: obj.vertices) {
@@ -229,15 +243,16 @@ std::ostream &operator<<(std::ostream &os, const Graph &obj) {
 }
 
 //TODO not working
-bool Graph::remove_edge(const Edge &edge) {
+bool AdjListGraph::remove_edge(const AdjListEdge &edge) {
 
 }
 
 //TODO not working
-bool Graph::remove_vertex(std::size_t data) {
+bool AdjListGraph::remove_vertex(std::size_t data) {
 
 
 }
+
 
 
 

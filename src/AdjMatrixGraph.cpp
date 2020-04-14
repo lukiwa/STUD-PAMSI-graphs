@@ -3,3 +3,5 @@
 //
 
 #include "AdjMatrixGraph.h"
+
+AdjMatrixGraph::AdjMatrixGraph(std::size_t number_of_vertices) {}

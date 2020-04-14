@@ -9,8 +9,13 @@
 #include "List.h"
 
 class AdjMatrixGraph {
+private:
     List<AdjMatrixVertex> veritces;
     int **adj_matrix;
+public:
+    AdjMatrixGraph(std::size_t number_of_vertices);
+
+
 };
 
 

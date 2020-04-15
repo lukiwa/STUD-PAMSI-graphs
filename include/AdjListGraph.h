@@ -15,6 +15,7 @@
  */
 class AdjListGraph {
 private:
+    std::size_t number_of_edges;
     List<AdjListVertex> vertices;
     List<AdjListEdge> adj_list;
 
@@ -27,7 +28,7 @@ public:
 
     bool insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight);
 
-    const List<AdjListEdge> incident_edges(std::size_t id) const;
+    List<AdjListEdge> incident_edges(std::size_t id) const;
 
     const List<AdjListVertex> &get_vertices() const;
 
@@ -46,11 +47,11 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj);
 
+    //not working
+    bool remove_edge(const AdjListEdge &edge);
 
-    void remove_edge(const AdjListEdge &edge);
-
-
-    void remove_vertex(std::size_t id);
+    //not working
+    bool remove_vertex(std::size_t id);
 
 };
 

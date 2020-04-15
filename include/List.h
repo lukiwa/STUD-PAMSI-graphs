@@ -239,21 +239,12 @@ public:
      * @param data_selected node containing that data will be removed
      */
     void pop_selected(const T &data_selected) {
-        if (count == 0) {
-            return;
-        }
-
         if (head->data == data_selected) {
             pop_front();
             return;
         }
-
         if (tail->data == data_selected) {
             pop_back();
-            return;
-        }
-
-        if (count == 1) {
             return;
         }
 

@@ -4,12 +4,6 @@
 
 #include "AdjListGraph.h"
 
-/**
- * @brief Constructor, sets initial number of edges as 0
- */
-AdjListGraph::AdjListGraph() {
-
-}
 
 /**
  * Allows adding vertices during constructions
@@ -51,7 +45,7 @@ bool AdjListGraph::insert_edge(std::size_t from_id, std::size_t to_id, unsigned 
         return false;
     }
 
-    auto new_edge = AdjListEdge{from_id, to_id, weight};
+    auto new_edge = GraphEdge{from_id, to_id, weight};
     adj_list.push_back(new_edge);
 
 
@@ -76,8 +70,8 @@ bool AdjListGraph::insert_edge(std::size_t from_id, std::size_t to_id, unsigned 
  * @param id id of vertex
  * @return list of incident edges
  */
-const List<AdjListEdge> AdjListGraph::incident_edges(std::size_t id) const {
-    List<AdjListEdge> return_list;
+const List<GraphEdge> AdjListGraph::incident_edges(std::size_t id) const {
+    List<GraphEdge> return_list;
     for (auto &i: vertices) {
         if (i.data == id) {
             return i.edges;
@@ -94,7 +88,7 @@ const List<AdjListVertex> &AdjListGraph::get_vertices() const {
     return vertices;
 }
 
-const List<AdjListEdge> &AdjListGraph::get_edges() const {
+const List<GraphEdge> &AdjListGraph::get_edges() const {
     return adj_list;
 }
 
@@ -103,7 +97,7 @@ const List<AdjListEdge> &AdjListGraph::get_edges() const {
  * @param edge given edge at graph
  * @return 2 element list - (from_id, to_id)
  */
-List<std::size_t> AdjListGraph::end_vertices(const AdjListEdge &edge) const {
+List<std::size_t> AdjListGraph::end_vertices(const GraphEdge &edge) const {
     List<std::size_t> return_list;
     return_list.push_back(edge.from_id);
     return_list.push_back(edge.to_id);
@@ -116,7 +110,7 @@ List<std::size_t> AdjListGraph::end_vertices(const AdjListEdge &edge) const {
  * @param edge edge connecting two vertices
  * @return id of second vertex
  */
-std::size_t AdjListGraph::opposite(std::size_t vertex_id, const AdjListEdge &edge) const {
+std::size_t AdjListGraph::opposite(std::size_t vertex_id, const GraphEdge &edge) const {
     if (vertex_id == edge.from_id) {
         return edge.to_id;
     }
@@ -134,7 +128,7 @@ std::size_t AdjListGraph::opposite(std::size_t vertex_id, const AdjListEdge &edg
  *         id's are equal or vertices do not exists
  */
 bool AdjListGraph::are_adjacent(std::size_t first_id, std::size_t second_id) const {
-    /*
+
     if (first_id == second_id) {
         return false;
     }
@@ -161,15 +155,15 @@ bool AdjListGraph::are_adjacent(std::size_t first_id, std::size_t second_id) con
 
 
     for (auto i: vertex.edges) {
-        if (adj_list.at(i).to_id == first_id && adj_list.at(i).from_id == second_id) {
+        if (i.to_id == first_id && i.from_id == second_id) {
             return true;
         }
-        if (adj_list.at(i).from_id == first_id && adj_list.at(i).to_id == second_id) {
+        if (i.from_id == first_id && i.to_id == second_id) {
             return true;
         }
     }
     return false;
-*/
+
 }
 
 /**
@@ -178,7 +172,7 @@ bool AdjListGraph::are_adjacent(std::size_t first_id, std::size_t second_id) con
  * @param new_weight new weight
  * @return true if replaced, false if not found given edge
  */
-bool AdjListGraph::replace(const AdjListEdge &edge, unsigned new_weight) {
+bool AdjListGraph::replace(const GraphEdge &edge, unsigned new_weight) {
     for (auto &i: adj_list) {
         if (i == edge) {
             i.weight = new_weight;
@@ -261,9 +255,9 @@ std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj) {
  * @brief Removes edge
  * @param edge given edge
  */
-void AdjListGraph::remove_edge(const AdjListEdge &edge) {
+void AdjListGraph::remove_edge(const GraphEdge &edge) {
     //reverse edge, not directed graph
-    auto rev_edge = AdjListEdge{edge.to_id, edge.from_id, edge.weight};
+    auto rev_edge = GraphEdge{edge.to_id, edge.from_id, edge.weight};
 
 
     adj_list.pop_selected(edge);
@@ -283,7 +277,7 @@ void AdjListGraph::remove_edge(const AdjListEdge &edge) {
  */
 void AdjListGraph::remove_vertex(std::size_t data) {
 
-    List<AdjListEdge> edges_list;
+    List<GraphEdge> edges_list;
 
     //find list of vertices of given object
     for (auto &i: vertices) {

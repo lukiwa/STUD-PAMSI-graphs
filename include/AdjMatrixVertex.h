@@ -13,7 +13,7 @@
  * @brief vertex of the graph
  */
 struct AdjMatrixVertex {
-    std::size_t key;
+    std::size_t id;
     int value;
 
 
@@ -21,23 +21,23 @@ struct AdjMatrixVertex {
 
 
     //TODO co z tym
-    /*
-    bool operator==(const AdjListVertex &v) {
-        return v.data == this->data;
+
+    bool operator==(const AdjMatrixVertex &v) {
+        return v.id == this->id && v.value == this->value;
+
     }
 
 
-    bool operator!=(const AdjListVertex &v) {
-        return v.data != this->data;
+    bool operator!=(const AdjMatrixVertex &v) {
+        return v.id != this->id && v.value != this->value;
     }
 
 
-    friend std::ostream &operator<<(std::ostream &os, const AdjListVertex &obj) {
-        os << obj.data;
+    friend std::ostream &operator<<(std::ostream &os, const AdjMatrixVertex &obj) {
+        os << obj.id;
         return os;
     }
 
-    */
 
 };
 

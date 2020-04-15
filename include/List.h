@@ -5,8 +5,8 @@
 #ifndef STUD_PAMSI_GRAPHS_LIST_H
 #define STUD_PAMSI_GRAPHS_LIST_H
 
-#include "Node.h"
-#include "NodeIterator.h"
+#include "ListNode.h"
+#include "ListNodeIterator.h"
 
 
 template<typename T>
@@ -16,8 +16,8 @@ template<typename T>
  */
 class List {
 private:
-    std::shared_ptr<Node<T>> head;
-    std::shared_ptr<Node<T>> tail;
+    std::shared_ptr<ListNode<T>> head;
+    std::shared_ptr<ListNode<T>> tail;
     std::size_t count;
 
 public:
@@ -88,16 +88,16 @@ public:
  * @brief For ranged loops
  * @return head of the list
  */
-    NodeIterator<T> begin() const {
-        return NodeIterator<T>(head);
+    ListNodeIterator<T> begin() const {
+        return ListNodeIterator<T>(head);
     }
 
 /**
  * @brief For ranged loops
  * @return very end of the list which is nullptr
  */
-    NodeIterator<T> end() const {
-        return NodeIterator<T>(nullptr);;
+    ListNodeIterator<T> end() const {
+        return ListNodeIterator<T>(nullptr);;
     }
 
     /**
@@ -149,7 +149,7 @@ public:
  * @param data data to be inserted
  */
     void push_front(const T &data) {
-        auto temp = std::make_shared<Node<T>>
+        auto temp = std::make_shared<ListNode<T>>
                 (data, head);
         head = temp;
         ++count;
@@ -160,7 +160,7 @@ public:
      * @param data data to be inserted
      */
     void push_back(const T &data) {
-        auto temp = std::make_shared<Node<T>>
+        auto temp = std::make_shared<ListNode<T>>
                 (data, nullptr);
         if (head == nullptr) {
             head = temp;
@@ -186,7 +186,7 @@ public:
         }
 
 
-        auto new_node = std::make_shared<Node<T>>
+        auto new_node = std::make_shared<ListNode<T>>
                 (new_data, curr->next);
         curr->next = new_node;
         ++count;

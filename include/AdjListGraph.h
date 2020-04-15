@@ -16,10 +16,12 @@
 class AdjListGraph {
 private:
     List<AdjListVertex> vertices;
-    List<AdjListEdge> adj_list;
+    List<GraphEdge> adj_list;
 
 public:
-    AdjListGraph();
+    AdjListGraph() = default;
+
+    ~AdjListGraph() = default;
 
     AdjListGraph(std::size_t number_of_vertices);
 
@@ -27,19 +29,19 @@ public:
 
     bool insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight);
 
-    const List<AdjListEdge> incident_edges(std::size_t id) const;
+    const List<GraphEdge> incident_edges(std::size_t id) const;
 
     const List<AdjListVertex> &get_vertices() const;
 
-    const List<AdjListEdge> &get_edges() const;
+    const List<GraphEdge> &get_edges() const;
 
-    List<std::size_t> end_vertices(const AdjListEdge &edge) const;
+    List<std::size_t> end_vertices(const GraphEdge &edge) const;
 
-    std::size_t opposite(std::size_t vertex_id, const AdjListEdge &edge) const;
+    std::size_t opposite(std::size_t vertex_id, const GraphEdge &edge) const;
 
     bool are_adjacent(std::size_t v, std::size_t u) const;
 
-    bool replace(const AdjListEdge &edge, unsigned new_weight);
+    bool replace(const GraphEdge &edge, unsigned new_weight);
 
     bool replace(std::size_t old_id, std::size_t new_id);
 
@@ -47,7 +49,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj);
 
 
-    void remove_edge(const AdjListEdge &edge);
+    void remove_edge(const GraphEdge &edge);
 
 
     void remove_vertex(std::size_t id);

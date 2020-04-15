@@ -1,19 +1,15 @@
 #include <iostream>
 #include "List.h"
-#include "NodeIterator.h"
+#include "ListNodeIterator.h"
 #include "AdjListGraph.h"
-
+#include "AdjMatrixGraph.h"
 
 int main() {
 
 
-    AdjListGraph graph(4);
-
+    AdjMatrixGraph graph(4);
 
     graph.insert_edge(0, 1, 420);
-    graph.insert_edge(0, 3, 1337);
-
-
     std::cout << graph << std::endl;
 
 

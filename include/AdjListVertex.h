@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "AdjListEdge.h"
+#include "GraphEdge.h"
 #include "List.h"
 
 /**
@@ -16,7 +16,7 @@
  */
 struct AdjListVertex {
     std::size_t data; //id (and data at the same time)
-    List<AdjListEdge> edges; //indices of edges at adj list
+    List<GraphEdge> edges; //indices of edges at adj list
 
 
     ~AdjListVertex() = default;

@@ -2,24 +2,25 @@
 // Created by lukasz-lap on 05.04.2020.
 //
 
-#ifndef STUD_PAMSI_GRAPHS_ADJLISTEDGE_H
-#define STUD_PAMSI_GRAPHS_ADJLISTEDGE_H
+#ifndef STUD_PAMSI_GRAPHS_GRAPHEDGE_H
+#define STUD_PAMSI_GRAPHS_GRAPHEDGE_H
 
 #include <iostream>
 #include <sstream>
 
 /**
- * @brief AdjListEdge of the graph
+ * @brief GraphEdge of the graph
  */
-struct AdjListEdge {
+struct GraphEdge {
     std::size_t from_id;
     std::size_t to_id;
     unsigned weight;
 
+    GraphEdge() = default;
 
-    AdjListEdge(size_t fromId, size_t toId, unsigned int weight) : from_id(fromId), to_id(toId), weight(weight) {}
+    GraphEdge(size_t fromId, size_t toId, unsigned int weight) : from_id(fromId), to_id(toId), weight(weight) {}
 
-    bool operator==(const AdjListEdge &e) {
+    bool operator==(const GraphEdge &e) {
         if (this->from_id == e.from_id) {
             if (this->to_id == e.to_id) {
                 if (this->weight == e.weight) {
@@ -30,7 +31,7 @@ struct AdjListEdge {
         return false;
     }
 
-    bool operator!=(const AdjListEdge &e) {
+    bool operator!=(const GraphEdge &e) {
         if (this->from_id == e.from_id) {
             if (this->to_id == e.to_id) {
                 if (this->weight == e.weight) {
@@ -42,7 +43,7 @@ struct AdjListEdge {
     }
 
 
-    friend std::ostream &operator<<(std::ostream &os, const AdjListEdge &obj) {
+    friend std::ostream &operator<<(std::ostream &os, const GraphEdge &obj) {
 
 
         os << "{" <<
@@ -55,5 +56,5 @@ struct AdjListEdge {
     }
 };
 
-#endif //STUD_PAMSI_GRAPHS_ADJLISTEDGE_H
+#endif //STUD_PAMSI_GRAPHS_GRAPHEDGE_H
 

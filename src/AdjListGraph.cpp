@@ -179,12 +179,22 @@ bool AdjListGraph::are_adjacent(std::size_t first_id, std::size_t second_id) con
  * @return true if replaced, false if not found given edge
  */
 bool AdjListGraph::replace(const AdjListEdge &edge, unsigned new_weight) {
-    for (auto i: adj_list) {
+    for (auto &i: adj_list) {
         if (i == edge) {
             i.weight = new_weight;
             return true;
         }
     }
+
+    for (auto &i: vertices) {
+        for (auto &j: i.edges) {
+            if (j == edge) {
+                j.weight = new_weight;
+            }
+        }
+    }
+
+
     return false;
 }
 
@@ -198,12 +208,19 @@ bool AdjListGraph::replace(std::size_t old_id, std::size_t new_id) {
     if (!vertices.is_present(AdjListVertex{old_id})) {
         return false;
     }
-    AdjListVertex vertex_old;
-    AdjListVertex vertex_new;
 
     for (auto &i: vertices) {
         if (i.data == old_id) {
             i.data = new_id;
+        }
+        for (auto &j: i.edges) {
+            if (j.from_id == old_id) {
+                j.from_id = new_id;
+
+            }
+            if (j.to_id == old_id) {
+                j.to_id = new_id;
+            }
         }
     }
 

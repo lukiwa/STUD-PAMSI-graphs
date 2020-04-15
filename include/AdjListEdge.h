@@ -17,6 +17,8 @@ struct AdjListEdge {
     unsigned weight;
 
 
+    AdjListEdge(size_t fromId, size_t toId, unsigned int weight) : from_id(fromId), to_id(toId), weight(weight) {}
+
     bool operator==(const AdjListEdge &e) {
         if (this->from_id == e.from_id) {
             if (this->to_id == e.to_id) {
@@ -26,6 +28,17 @@ struct AdjListEdge {
             }
         }
         return false;
+    }
+
+    bool operator!=(const AdjListEdge &e) {
+        if (this->from_id == e.from_id) {
+            if (this->to_id == e.to_id) {
+                if (this->weight == e.weight) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 

@@ -11,6 +11,7 @@
 
 class AdjMatrixGraph {
 private:
+    GraphEdge dummy;
     std::size_t number_of_vertices;
     List<AdjMatrixVertex> vertices;
     GraphEdge **adj_matrix; //
@@ -28,9 +29,8 @@ public:
 
     const List<GraphEdge> incident_edges(std::size_t id) const;
 
-    const List<AdjMatrixVertex> &get_vertices() const;
 
-    const List<GraphEdge> &get_edges() const;
+    List<GraphEdge> get_edges() const;
 
     List<std::size_t> end_vertices(const GraphEdge &edge) const;
 
@@ -41,6 +41,8 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const AdjMatrixGraph &obj);
 
     void remove_edge(const GraphEdge &edge);
+
+    List<AdjMatrixVertex> get_vertices() const;
 
 
     //TODO

@@ -84,11 +84,11 @@ const List<GraphEdge> AdjListGraph::incident_edges(std::size_t id) const {
  * @brief Gets list of all vertices in graph
  * @return list of vertices
  */
-const List<AdjListVertex> &AdjListGraph::get_vertices() const {
+List<AdjListVertex> AdjListGraph::get_vertices() const {
     return vertices;
 }
 
-const List<GraphEdge> &AdjListGraph::get_edges() const {
+List<GraphEdge> AdjListGraph::get_edges() const {
     return adj_list;
 }
 

@@ -31,9 +31,9 @@ public:
 
     const List<GraphEdge> incident_edges(std::size_t id) const;
 
-    const List<AdjListVertex> &get_vertices() const;
+    List<AdjListVertex> get_vertices() const;
 
-    const List<GraphEdge> &get_edges() const;
+    List<GraphEdge> get_edges() const;
 
     List<std::size_t> end_vertices(const GraphEdge &edge) const;
 

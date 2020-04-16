@@ -10,6 +10,8 @@ int main() {
     AdjMatrixGraph graph(4);
 
     graph.insert_edge(0, 1, 420);
+    graph.insert_edge(3, 0, 1337);
+    graph.remove_edge(GraphEdge(0, 15, 420));
     std::cout << graph << std::endl;
 
 

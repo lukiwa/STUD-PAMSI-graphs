@@ -11,10 +11,11 @@
 #include "GraphEdge.h"
 #include "List.h"
 
+
 /**
  * @brief vertex of the graph
  */
-struct AdjListVertex {
+struct AdjListVertex  {
     std::size_t data; //id (and data at the same time)
     List<GraphEdge> edges; //indices of edges at adj list
 

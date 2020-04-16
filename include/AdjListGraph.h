@@ -9,11 +9,12 @@
 #include <memory>
 #include <exception>
 #include "AdjListVertex.h"
+#include "Graph.h"
 
 /**
  * @brief graph class
  */
-class AdjListGraph {
+class AdjListGraph : public Graph {
 private:
     List<AdjListVertex> vertices;
     List<GraphEdge> adj_list;
@@ -23,36 +24,34 @@ public:
 
     ~AdjListGraph() = default;
 
-    AdjListGraph(std::size_t number_of_vertices);
+    explicit AdjListGraph(std::size_t number_of_vertices);
 
-    bool insert_vertex(std::size_t id);
+    bool insert_vertex(std::size_t id) override;
 
-    bool insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight);
+    bool insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight) override;
 
-    const List<GraphEdge> incident_edges(std::size_t id) const;
+    const List<GraphEdge> incident_edges(std::size_t id) const override;
 
     List<AdjListVertex> get_vertices() const;
 
-    List<GraphEdge> get_edges() const;
+    List<GraphEdge> get_edges() const override;
 
-    List<std::size_t> end_vertices(const GraphEdge &edge) const;
+    List<std::size_t> end_vertices(const GraphEdge &edge) const override;
 
-    std::size_t opposite(std::size_t vertex_id, const GraphEdge &edge) const;
+    bool are_adjacent(std::size_t v, std::size_t u) const override;
 
-    bool are_adjacent(std::size_t v, std::size_t u) const;
+    bool replace(const GraphEdge &edge, unsigned new_weight) override;
 
-    bool replace(const GraphEdge &edge, unsigned new_weight);
-
-    bool replace(std::size_t old_id, std::size_t new_id);
+    bool replace(std::size_t old_id, std::size_t new_id) override;
 
 
     friend std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj);
 
 
-    void remove_edge(const GraphEdge &edge);
+    bool remove_edge(const GraphEdge &edge);
 
 
-    void remove_vertex(std::size_t id);
+    bool remove_vertex(std::size_t id);
 
 };
 

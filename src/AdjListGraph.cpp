@@ -11,7 +11,7 @@
  */
 AdjListGraph::AdjListGraph(std::size_t number_of_vertices) {
     for (std::size_t i = 0; i < number_of_vertices; ++i) {
-        insert_vertex(i);
+        vertices.push_back(AdjListVertex{i});
     }
 
 
@@ -104,21 +104,6 @@ List<std::size_t> AdjListGraph::end_vertices(const GraphEdge &edge) const {
     return return_list;
 }
 
-/**
- * @brief Gets opposite vertex
- * @param vertex vertex at one end od edge
- * @param edge edge connecting two vertices
- * @return id of second vertex
- */
-std::size_t AdjListGraph::opposite(std::size_t vertex_id, const GraphEdge &edge) const {
-    if (vertex_id == edge.from_id) {
-        return edge.to_id;
-    }
-    if (vertex_id == edge.to_id) {
-        return edge.from_id;
-    }
-    throw (std::exception());
-}
 
 /**
  * @brief Checks whether vertices with given id's are adjacent
@@ -255,10 +240,13 @@ std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj) {
  * @brief Removes edge
  * @param edge given edge
  */
-void AdjListGraph::remove_edge(const GraphEdge &edge) {
+bool AdjListGraph::remove_edge(const GraphEdge &edge) {
     //reverse edge, not directed graph
     auto rev_edge = GraphEdge{edge.to_id, edge.from_id, edge.weight};
 
+    if (!adj_list.is_present(edge) && !adj_list.is_present(edge)) {
+        return false;
+    }
 
     adj_list.pop_selected(edge);
     adj_list.pop_selected(rev_edge);
@@ -268,6 +256,8 @@ void AdjListGraph::remove_edge(const GraphEdge &edge) {
         i.edges.pop_selected(rev_edge);
     }
 
+    return true;
+
 
 }
 
@@ -275,9 +265,14 @@ void AdjListGraph::remove_edge(const GraphEdge &edge) {
  * @brief Removes vertex and all edges coming from/to it
  * @param data id of the vertex
  */
-void AdjListGraph::remove_vertex(std::size_t data) {
+bool AdjListGraph::remove_vertex(std::size_t data) {
 
+    if (!vertices.is_present(AdjListVertex{data})) {
+        return false;
+    }
     List<GraphEdge> edges_list;
+
+
 
     //find list of vertices of given object
     for (auto &i: vertices) {
@@ -296,7 +291,7 @@ void AdjListGraph::remove_vertex(std::size_t data) {
     //remove vertex from list
     vertices.pop_selected(AdjListVertex{data});
 
-
+    return true;
 }
 
 

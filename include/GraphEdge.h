@@ -8,7 +8,7 @@
 #include <iostream>
 #include <sstream>
 
-//TODO przenies do cpp
+
 /**
  * @brief GraphEdge of the graph
  */
@@ -17,51 +17,18 @@ struct GraphEdge {
     std::size_t to_id;
     unsigned weight;
 
-    GraphEdge() {
-        from_id = 0;
-        to_id = 0;
-        weight = 0;
-    };
+    GraphEdge();
 
-    GraphEdge(size_t fromId, size_t toId, unsigned int weight) : from_id(fromId), to_id(toId), weight(weight) {}
+    GraphEdge(size_t fromId, size_t toId, unsigned int weight);
 
     ~GraphEdge() = default;
 
 
-    bool operator==(const GraphEdge &e) {
-        if (this->from_id == e.from_id) {
-            if (this->to_id == e.to_id) {
-                if (this->weight == e.weight) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    bool operator==(const GraphEdge &e);
 
-    bool operator!=(const GraphEdge &e) {
-        if (this->from_id == e.from_id) {
-            if (this->to_id == e.to_id) {
-                if (this->weight == e.weight) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+    bool operator!=(const GraphEdge &e);
 
-
-    friend std::ostream &operator<<(std::ostream &os, const GraphEdge &obj) {
-
-
-        os << "{" <<
-           obj.from_id << " " <<
-           obj.to_id << " " <<
-           obj.weight << "}";
-
-
-        return os;
-    }
+    friend std::ostream &operator<<(std::ostream &os, const GraphEdge &obj);
 };
 
 #endif //STUD_PAMSI_GRAPHS_GRAPHEDGE_H

@@ -6,4 +6,4 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 
 include_directories(include)
 
-add_executable(STUD_PAMSI_graphs src/main.cpp include/List.h include/ListNode.h include/ListNodeIterator.h src/AdjListGraph.cpp include/AdjListGraph.h include/GraphEdge.h include/Vertex.h src/AdjMatrixGraph.cpp include/AdjMatrixGraph.h include/Graph.h)
+add_executable(STUD_PAMSI_graphs src/main.cpp include/List.h include/ListNode.h include/ListNodeIterator.h src/AdjListGraph.cpp include/AdjListGraph.h include/GraphEdge.h include/GraphVertex.h src/AdjMatrixGraph.cpp include/AdjMatrixGraph.h include/Graph.h src/GraphEdge.cpp src/Graph.cpp src/GraphVertex.cpp)

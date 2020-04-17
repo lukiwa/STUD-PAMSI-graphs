@@ -7,7 +7,7 @@
 
 #include "List.h"
 #include "GraphEdge.h"
-#include "Vertex.h"
+#include "GraphVertex.h"
 #include "Graph.h"
 
 
@@ -18,7 +18,6 @@ private:
 public:
     AdjMatrixGraph();
 
-    //TOdo dokoncz konstruktor
     ~AdjMatrixGraph() override;
 
     explicit AdjMatrixGraph(std::size_t number_of_vertices);

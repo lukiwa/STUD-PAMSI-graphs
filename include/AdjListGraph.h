@@ -9,7 +9,7 @@
 #include <memory>
 #include <exception>
 #include "Graph.h"
-#include "Vertex.h"
+#include "GraphVertex.h"
 
 /**
  * @brief graph class

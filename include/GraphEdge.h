@@ -8,6 +8,7 @@
 #include <iostream>
 #include <sstream>
 
+//TODO przenies do cpp
 /**
  * @brief GraphEdge of the graph
  */
@@ -16,9 +17,16 @@ struct GraphEdge {
     std::size_t to_id;
     unsigned weight;
 
-    GraphEdge() = default;
+    GraphEdge() {
+        from_id = 0;
+        to_id = 0;
+        weight = 0;
+    };
 
     GraphEdge(size_t fromId, size_t toId, unsigned int weight) : from_id(fromId), to_id(toId), weight(weight) {}
+
+    ~GraphEdge() = default;
+
 
     bool operator==(const GraphEdge &e) {
         if (this->from_id == e.from_id) {

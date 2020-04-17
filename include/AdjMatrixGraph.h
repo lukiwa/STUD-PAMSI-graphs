@@ -7,25 +7,22 @@
 
 #include "List.h"
 #include "GraphEdge.h"
-#include "AdjMatrixVertex.h"
+#include "Vertex.h"
 #include "Graph.h"
 
 
 class AdjMatrixGraph : public Graph {
 private:
     GraphEdge dummy;
-    std::size_t number_of_vertices;
-    List<AdjMatrixVertex> vertices;
-    GraphEdge **adj_matrix; //
+    GraphEdge **adj_matrix;
 
 public:
-    //TODO
     AdjMatrixGraph();
 
-    ~AdjMatrixGraph();
+    //TOdo dokoncz konstruktor
+    ~AdjMatrixGraph() override;
 
     explicit AdjMatrixGraph(std::size_t number_of_vertices);
-
 
     bool insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight) override;
 
@@ -34,16 +31,12 @@ public:
 
     List<GraphEdge> get_edges() const override;
 
-    List<std::size_t> end_vertices(const GraphEdge &edge) const override;
-
 
     bool are_adjacent(std::size_t v, std::size_t u) const override;
 
-    friend std::ostream &operator<<(std::ostream &os, const AdjMatrixGraph &obj) ;
+    friend std::ostream &operator<<(std::ostream &os, const AdjMatrixGraph &obj);
 
     bool remove_edge(const GraphEdge &edge) override;
-
-    List<AdjMatrixVertex> get_vertices() const ;
 
 
     bool replace(const GraphEdge &edge, unsigned new_weight) override;

@@ -4,13 +4,13 @@
 
 #include "AdjMatrixGraph.h"
 
-
-//TODO
-AdjMatrixGraph::~AdjMatrixGraph() {
-
+AdjMatrixGraph::AdjMatrixGraph() : Graph() {
+    adj_matrix = nullptr;
+    *adj_matrix = nullptr;
 }
 
-AdjMatrixGraph::AdjMatrixGraph() {
+//TODO dokoncz konstruktor
+AdjMatrixGraph::~AdjMatrixGraph() {
 
 }
 
@@ -19,17 +19,13 @@ AdjMatrixGraph::AdjMatrixGraph() {
  * @brief Constructs graph object with given nubmer of vertices
  * @param number_of_vertices
  */
-AdjMatrixGraph::AdjMatrixGraph(std::size_t number_of_vertices) :
-        number_of_vertices(number_of_vertices) {
-
-
+AdjMatrixGraph::AdjMatrixGraph(std::size_t number_of_vertices) {
     this->number_of_vertices = number_of_vertices;
-    dummy = GraphEdge(0, 0, 0); //dummy edge, means no edges
 
     adj_matrix = new GraphEdge *[number_of_vertices];
     for (std::size_t i = 0; i < number_of_vertices; ++i) {
         adj_matrix[i] = new GraphEdge[number_of_vertices];
-        vertices.push_back(AdjMatrixVertex{i});
+        vertices.push_back(Vertex(i));
         for (std::size_t j = 0; j < number_of_vertices; ++j) {
             adj_matrix[i][j] = dummy;
         }
@@ -61,8 +57,8 @@ bool AdjMatrixGraph::insert_edge(std::size_t from_id, std::size_t to_id, unsigne
         return false;
     }
     /*
-    if (!vertices.is_present(AdjMatrixVertex{from_id}) ||
-        !vertices.is_present(AdjMatrixVertex{to_id})) {
+    if (!vertices.is_present(Vertex{from_id}) ||
+        !vertices.is_present(Vertex{to_id})) {
         return false;
     }
      */
@@ -115,28 +111,6 @@ List<GraphEdge> AdjMatrixGraph::get_edges() const {
 
 }
 
-/**
- * @brief Get end vertices of given edge
- * @param edge reference edge
- * @return 2 element list of end vertices
- */
-List<std::size_t> AdjMatrixGraph::end_vertices(const GraphEdge &edge) const {
-    List<std::size_t> ret_val;
-    GraphEdge reversed(edge.to_id, edge.from_id, edge.weight);
-
-    for (std::size_t i = 0; i < number_of_vertices; ++i) {
-        for (std::size_t j = 0; j < number_of_vertices; ++j) {
-            if (adj_matrix[i][j] == edge || adj_matrix[i][j] == reversed) {
-                if (!ret_val.is_present(i) && !ret_val.is_present(j)) {
-                    ret_val.push_back(i);
-                    ret_val.push_back(j);
-                }
-            }
-        }
-    }
-    return ret_val;
-}
-
 
 /**
  * @brief Checks if 2 vertices are adjacent
@@ -149,9 +123,10 @@ bool AdjMatrixGraph::are_adjacent(std::size_t v, std::size_t u) const {
         return false;
     }
 
-    if (!vertices.is_present(AdjMatrixVertex{v}) || !vertices.is_present(AdjMatrixVertex{u})) {
+    if (!vertices.is_present(Vertex(v)) || !vertices.is_present(Vertex(u))) {
         return false;
     }
+
 
     return adj_matrix[v][u] != dummy || adj_matrix[u][v] != dummy;
 }
@@ -161,8 +136,8 @@ bool AdjMatrixGraph::are_adjacent(std::size_t v, std::size_t u) const {
  * @param edge edge that needs to be deleted
  */
 bool AdjMatrixGraph::remove_edge(const GraphEdge &edge) {
-    if (!vertices.is_present(AdjMatrixVertex{edge.from_id}) ||
-        !vertices.is_present(AdjMatrixVertex{edge.to_id})) {
+    if (!vertices.is_present(Vertex(edge.from_id)) ||
+        !vertices.is_present(Vertex(edge.to_id))) {
         return false;
     }
     GraphEdge reversed(edge.to_id, edge.from_id, edge.weight);
@@ -181,13 +156,6 @@ bool AdjMatrixGraph::remove_edge(const GraphEdge &edge) {
 
 }
 
-/**
- * @brief Gets list of all vertices
- * @return list of vertices in graph
- */
-List<AdjMatrixVertex> AdjMatrixGraph::get_vertices() const {
-    return vertices;
-}
 
 /**
  * @brief Change weight of the
@@ -196,10 +164,11 @@ List<AdjMatrixVertex> AdjMatrixGraph::get_vertices() const {
  * @return true if replaced, false if vertices connected to edge do not exists
  */
 bool AdjMatrixGraph::replace(const GraphEdge &edge, unsigned new_weight) {
-    if (!vertices.is_present(AdjMatrixVertex{edge.from_id}) ||
-        !vertices.is_present(AdjMatrixVertex{edge.to_id})) {
+    if (!vertices.is_present(Vertex(edge.from_id)) ||
+        !vertices.is_present(Vertex(edge.to_id))) {
         return false;
     }
+
 
     if (adj_matrix[edge.from_id][edge.to_id] == edge) {
         adj_matrix[edge.from_id][edge.to_id].weight = new_weight;
@@ -218,7 +187,7 @@ bool AdjMatrixGraph::replace(const GraphEdge &edge, unsigned new_weight) {
  */
 bool AdjMatrixGraph::insert_vertex(std::size_t data) {
     ++number_of_vertices;
-    vertices.push_back(AdjMatrixVertex{number_of_vertices - 1, static_cast<int>(data)});
+    vertices.push_back(Vertex(number_of_vertices - 1, static_cast<int>(data)));
     auto old_adj_matrix = adj_matrix;
 
     adj_matrix = new GraphEdge *[number_of_vertices];
@@ -239,15 +208,13 @@ bool AdjMatrixGraph::insert_vertex(std::size_t data) {
     return true;
 }
 
-/**
+/** TODO usuwaj po id
  * @brief Remove first vertex with given data
  * @param data data stored in vertex
  * @return true if removed, false otherwise
  */
 bool AdjMatrixGraph::remove_vertex(std::size_t data) {
-    if (data == 0) {
-        return false;  //all vertices have default data =0
-    }
+
     std::size_t id = 0;
 
 

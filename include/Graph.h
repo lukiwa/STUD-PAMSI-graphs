@@ -7,17 +7,26 @@
 
 #include "GraphEdge.h"
 #include "List.h"
+#include "Vertex.h"
 
-
+//TODO przenies do cpp
 class Graph {
+protected:
+    std::size_t number_of_vertices;
+    List<Vertex> vertices;
+public:
+    Graph() {
+        number_of_vertices = 0;
+    }
+
+    virtual ~Graph() = default;
+
     virtual bool insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight) = 0;
 
     virtual const List<GraphEdge> incident_edges(std::size_t id) const = 0;
 
 
     virtual List<GraphEdge> get_edges() const = 0;
-
-    virtual List<std::size_t> end_vertices(const GraphEdge &edge) const = 0;
 
 
     virtual bool are_adjacent(std::size_t v, std::size_t u) const = 0;
@@ -51,7 +60,25 @@ class Graph {
         throw (std::exception());
     }
 
-    // GetVertices method
+    /**
+     * @brief Get list of vertices
+     * @return list of vertices
+     */
+    List<Vertex> get_vertices() const {
+        return vertices;
+    }
+
+    /**
+     * @brief Get end vertices of given edge
+     * @param edge given edge
+     * @return list of end vertices
+     */
+    virtual List<std::size_t> end_vertices(const GraphEdge &edge) {
+        List<std::size_t> return_list;
+        return_list.push_back(edge.from_id);
+        return_list.push_back(edge.to_id);
+        return return_list;
+    }
 
 };
 

@@ -13,7 +13,6 @@
 
 class AdjMatrixGraph : public Graph {
 private:
-    GraphEdge dummy;
     GraphEdge **adj_matrix;
 
 public:
@@ -41,11 +40,10 @@ public:
 
     bool replace(const GraphEdge &edge, unsigned new_weight) override;
 
-    bool replace(std::size_t old_data, std::size_t new_data) override;
 
-    bool insert_vertex(std::size_t data) override;
+    void insert_vertex(int data) override;
 
-    bool remove_vertex(std::size_t data) override;
+    bool remove_vertex(std::size_t id) override;
 
 
 };

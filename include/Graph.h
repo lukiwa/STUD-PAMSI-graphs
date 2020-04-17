@@ -12,6 +12,7 @@
 //TODO przenies do cpp
 class Graph {
 protected:
+    GraphEdge dummy;
     std::size_t number_of_vertices;
     List<Vertex> vertices;
 public:
@@ -37,11 +38,9 @@ public:
 
     virtual bool replace(const GraphEdge &edge, unsigned new_weight) = 0;
 
-    virtual bool replace(std::size_t old_data, std::size_t new_data) = 0;
+    virtual void insert_vertex(int data) = 0;
 
-    virtual bool insert_vertex(std::size_t data) = 0;
-
-    virtual bool remove_vertex(std::size_t data) = 0;
+    virtual bool remove_vertex(std::size_t id) = 0;
 
     /**
      * @brief Get opposite vertex of given edge
@@ -78,6 +77,22 @@ public:
         return_list.push_back(edge.from_id);
         return_list.push_back(edge.to_id);
         return return_list;
+    }
+
+    /**
+     * @brief Replace data stored in vertex
+     * @param old_data old data inside vertex
+     * @param new_data new data inside vertex
+     * @return true if replaced, false if vertex with such data do not exist
+     */
+    virtual bool replace(int old_data, int new_data) {
+        for (auto &i: vertices) {
+            if (i.value == old_data) {
+                i.value = new_data;
+                return true;
+            }
+        }
+        return false;
     }
 
 };

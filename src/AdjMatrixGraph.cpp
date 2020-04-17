@@ -161,11 +161,10 @@ bool AdjMatrixGraph::remove_edge(const GraphEdge &edge) {
  * @brief Change weight of the
  * @param edge
  * @param new_weight
- * @return true if replaced, false if vertices connected to edge do not exists
+ * @return true if replaced, false indices out of bound
  */
 bool AdjMatrixGraph::replace(const GraphEdge &edge, unsigned new_weight) {
-    if (!vertices.is_present(Vertex(edge.from_id)) ||
-        !vertices.is_present(Vertex(edge.to_id))) {
+    if (edge.to_id > number_of_vertices || edge.from_id > number_of_vertices) {
         return false;
     }
 
@@ -185,9 +184,9 @@ bool AdjMatrixGraph::replace(const GraphEdge &edge, unsigned new_weight) {
  * @param data data stored inside vertex
  * @return true if added
  */
-bool AdjMatrixGraph::insert_vertex(std::size_t data) {
+void AdjMatrixGraph::insert_vertex(int data) {
     ++number_of_vertices;
-    vertices.push_back(Vertex(number_of_vertices - 1, static_cast<int>(data)));
+    vertices.push_back(Vertex(number_of_vertices - 1, data));
     auto old_adj_matrix = adj_matrix;
 
     adj_matrix = new GraphEdge *[number_of_vertices];
@@ -205,38 +204,30 @@ bool AdjMatrixGraph::insert_vertex(std::size_t data) {
         }
     }
 
-    return true;
 }
 
-/** TODO usuwaj po id
+/**
  * @brief Remove first vertex with given data
  * @param data data stored in vertex
  * @return true if removed, false otherwise
  */
-bool AdjMatrixGraph::remove_vertex(std::size_t data) {
-
-    std::size_t id = 0;
+bool AdjMatrixGraph::remove_vertex(std::size_t id) {
+    if (id >= number_of_vertices) {
+        return false;
+    }
 
 
     //find vertex and pop it
     for (auto &i: vertices) {
-        if (i.value == (int) data) {
-            id = i.id;
+        if (i.id == id) {
             vertices.pop_selected(i);
         }
-    }
-    //if vertex with such data was not found
-    if (id == 0) {
-        return false;
-    }
-    --number_of_vertices;
-
-    //change id's after removed vertex
-    for (auto &i: vertices) {
         if (i.id > id) {
             --i.id;
         }
     }
+
+    ;
 
     //remove all edges to or from that vertex
     for (std::size_t i = 0; i < number_of_vertices; ++i) {
@@ -247,14 +238,14 @@ bool AdjMatrixGraph::remove_vertex(std::size_t data) {
         }
     }
 
+
     //allocate new matrix
+    --number_of_vertices;
     auto old_adj_matrix = adj_matrix;
     adj_matrix = new GraphEdge *[number_of_vertices];
     for (std::size_t i = 0; i < number_of_vertices; ++i) {
         adj_matrix[i] = new GraphEdge[number_of_vertices];
-        for (std::size_t j = 0; j < number_of_vertices; ++j) {
-            adj_matrix[i][j] = dummy;
-        }
+
     }
 
 
@@ -263,7 +254,7 @@ bool AdjMatrixGraph::remove_vertex(std::size_t data) {
         if (i == id) { continue; }
         for (std::size_t j = 0; j < number_of_vertices; ++j) {
             if (j == id) { continue; }
-            old_adj_matrix[i][j] = adj_matrix[i][j];
+            adj_matrix[i][j] = old_adj_matrix[i][j];
         }
     }
 
@@ -272,19 +263,4 @@ bool AdjMatrixGraph::remove_vertex(std::size_t data) {
 
 }
 
-/**
- * @brief Replace data of vertex (first found)
- * @param old_data prev data stored in vertex
- * @param new_data new data stored in vertex
- * @return true if replaced, false otherwise
- */
-bool AdjMatrixGraph::replace(std::size_t old_data, std::size_t new_data) {
 
-    for (auto &i: vertices) {
-        if (i.value == (int) old_data) {
-            i.value = new_data;
-            return true;
-        }
-    }
-    return false;
-}

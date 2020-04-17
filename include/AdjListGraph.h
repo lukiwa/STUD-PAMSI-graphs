@@ -25,7 +25,7 @@ public:
 
     explicit AdjListGraph(std::size_t number_of_vertices);
 
-    bool insert_vertex(std::size_t data) override;
+    void insert_vertex(int data) override;
 
     bool insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight) override;
 
@@ -37,7 +37,6 @@ public:
 
     bool replace(const GraphEdge &edge, unsigned new_weight) override;
 
-    bool replace(std::size_t old_data, std::size_t new_data) override;
 
 
     friend std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj);
@@ -46,7 +45,7 @@ public:
     bool remove_edge(const GraphEdge &edge);
 
 
-    bool remove_vertex(std::size_t data);
+    bool remove_vertex(std::size_t id);
 
 };
 

@@ -45,6 +45,9 @@ struct ListNodeIterator {
     }
 
 
+    operator std::shared_ptr<ListNode<T>>() { return curr; }
+
+
 };
 
 

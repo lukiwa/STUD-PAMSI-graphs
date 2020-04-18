@@ -7,6 +7,7 @@
 
 #include "ListNode.h"
 #include "ListNodeIterator.h"
+#include <iostream>
 
 
 template<typename T>
@@ -19,6 +20,17 @@ private:
     std::shared_ptr<ListNode<T>> head;
     std::shared_ptr<ListNode<T>> tail;
     std::size_t count;
+
+    /**
+     * @brief Swap content of 2 nodes
+     * @param v1 first node
+     * @param v2 second node
+     */
+    void swap(std::shared_ptr<ListNode<T>> &v1, std::shared_ptr<ListNode<T>> &v2) {
+        T temp = v1->data;
+        v1->data = v2->data;
+        v2->data = temp;
+    }
 
 public:
 
@@ -346,6 +358,25 @@ public:
 
         return os;
     }
+
+
+    /**
+     * @brief Sort list in non-decreasing order (INEFFICIENT!!!)
+     * @param head beggining of the list (use list::begin())
+     */
+    void sort(std::shared_ptr<ListNode<T>> head) {
+        if (head->next == nullptr) { return; }
+
+        auto temp = head->next;
+        sort(temp);
+        if (temp->data < head->data) {
+            swap(head, temp);
+            sort(head);
+
+        }
+
+    }
+
 
 };
 

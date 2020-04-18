@@ -28,7 +28,11 @@ struct GraphEdge {
 
     bool operator!=(const GraphEdge &e);
 
+    bool operator<(const GraphEdge &e);
+
     friend std::ostream &operator<<(std::ostream &os, const GraphEdge &obj);
+
+
 };
 
 #endif //STUD_PAMSI_GRAPHS_GRAPHEDGE_H

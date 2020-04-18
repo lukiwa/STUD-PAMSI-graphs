@@ -65,5 +65,12 @@ std::ostream &operator<<(std::ostream &os, const GraphEdge &obj) {
     return os;
 }
 
+/**
+ *@brief for sorting purposes
+ */
+bool GraphEdge::operator<(const GraphEdge &e) {
+    return weight < e.weight;
+}
+
 
 

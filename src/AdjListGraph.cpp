@@ -37,6 +37,7 @@ void AdjListGraph::insert_vertex(int data) {
 
 
     vertices.push_back(GraphVertex(number_of_vertices - 1, data));
+    delete[] old_adj_list;
 }
 
 /**
@@ -165,11 +166,22 @@ std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj) {
  * @param edge given edge
  */
 bool AdjListGraph::remove_edge(const GraphEdge &edge) {
+
+    bool found = false;
     //reverse edge, not directed graph
     auto reversed = GraphEdge(edge.to_id, edge.from_id, edge.weight);
+    for (std::size_t i = 0; i < number_of_vertices; ++i) {
+        for (auto &j: adj_list[i]) {
+            if (j == edge || j == reversed) {
+                adj_list[i].pop_selected(j);
+                found = true;
+            }
+        }
 
 
-    return true;
+    }
+
+    return found;
 
 
 }

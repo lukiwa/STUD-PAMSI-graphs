@@ -42,10 +42,10 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj);
 
 
-    bool remove_edge(const GraphEdge &edge);
+    bool remove_edge(const GraphEdge &edge) override;
 
 
-    bool remove_vertex(std::size_t id);
+    bool remove_vertex(std::size_t id) override;
 
 };
 

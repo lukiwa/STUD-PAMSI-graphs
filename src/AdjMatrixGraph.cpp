@@ -212,6 +212,11 @@ void AdjMatrixGraph::insert_vertex(int data) {
         }
     }
 
+    for (std::size_t i = 0; i < number_of_vertices - 1; ++i) {
+        delete[] old_adj_matrix[i];
+    }
+    delete[] old_adj_matrix;
+
 }
 
 /**

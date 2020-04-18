@@ -47,7 +47,7 @@ List<std::size_t> Graph::end_vertices(const GraphEdge &edge) {
  * @param new_data new data inside vertex
  * @return true if replaced, false if vertex with such data do not exist
  */
-bool Graph::replace(int old_data, int new_data) {
+bool Graph::vertex_replace(int old_data, int new_data) {
     for (auto &i: vertices) {
         if (i.value == old_data) {
             i.value = new_data;

@@ -52,7 +52,7 @@ public:
     virtual List<std::size_t> end_vertices(const GraphEdge &edge);
 
 
-    virtual bool replace(int old_data, int new_data);
+    virtual bool vertex_replace(int old_data, int new_data);
 
 };
 

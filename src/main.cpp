@@ -4,6 +4,8 @@
 #include "List.h"
 
 
+#define LOG(x) { std::cout << x << std::endl }
+
 int main() {
 
 
@@ -12,7 +14,8 @@ int main() {
     graph.insert_edge(0, 1, 420);
 
     graph.insert_vertex(14);
-    std::cout << graph << std::endl;
+    graph.remove_vertex(3);
+    LOG(graph);
 
 
     return 0;

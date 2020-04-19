@@ -292,7 +292,7 @@ public:
      * @param index index of node
      * @return data stored in node at index
      */
-    T *at(std::size_t index) const {
+    T at(std::size_t index) const {
         if (index < count) {
 
 
@@ -302,7 +302,7 @@ public:
             std::size_t i = 0;
             while (curr != nullptr) {
                 if (i == index)
-                    return &(curr->data);
+                    return (curr->data);
                 i++;
                 curr = curr->next;
             }

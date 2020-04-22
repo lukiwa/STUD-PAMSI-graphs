@@ -8,8 +8,7 @@
  * @brief Default constructor for graph
  */
 AdjMatrixGraph::AdjMatrixGraph() : Graph() {
-    adj_matrix = nullptr;
-    *adj_matrix = nullptr;
+   adj_matrix = nullptr;
 }
 
 /**

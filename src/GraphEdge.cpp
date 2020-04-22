@@ -27,9 +27,9 @@ GraphEdge::GraphEdge(size_t fromId, size_t toId, unsigned int weight) :
 bool GraphEdge::operator==(const GraphEdge &e) {
     if (this->from_id == e.from_id) {
         if (this->to_id == e.to_id) {
-            if (this->weight == e.weight) {
-                return true;
-            }
+
+            return true;
+
         }
     }
     return false;
@@ -43,9 +43,9 @@ bool GraphEdge::operator==(const GraphEdge &e) {
 bool GraphEdge::operator!=(const GraphEdge &e) {
     if (this->from_id == e.from_id) {
         if (this->to_id == e.to_id) {
-            if (this->weight == e.weight) {
-                return false;
-            }
+
+            return false;
+
         }
     }
     return true;

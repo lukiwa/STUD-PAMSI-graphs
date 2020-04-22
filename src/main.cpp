@@ -5,15 +5,20 @@
 #include <chrono>
 #include <algorithm>
 #include "UtilityAlgorithms.h"
-#include "AlgorithmsMST.h"
+#include <random>
+#include "RandomGraphGenerator.h"
 
 
 #define LOG(x) { std::cout << x << std::endl; }
 
 
 int main() {
-
-    AdjListGraph graph(6);
+    srand(time(NULL));
+/*
+    AdjListGraph graph;
+    for (int j = 0; j < 6; ++j) {
+        graph.insert_vertex(j);
+    }
     graph.insert_edge(0, 1, 10);
     graph.insert_edge(1, 2, 20);
     graph.insert_edge(2, 3, 30);
@@ -21,13 +26,20 @@ int main() {
     graph.insert_edge(0, 4, 5);
     graph.insert_edge(4, 5, 15);
 
-
-    auto res = utility::BellmanFord(graph, 0);
-    for (int i = 0; i < graph.get_vertices().size(); ++i) {
+    LOG(graph)
+    auto res = utility::BellmanFord(graph, 1);
+    for (std::size_t i = 0; i < graph.get_vertices().size(); ++i) {
         std::cout << i << "  " << res[i].first << "  " << res[i].second << std::endl;
     }
-    delete [] res;
-
+*/
+    AdjMatrixGraph graph(10);
+    RandomGraphGenerator rg(graph);
+    rg.Generate();
+    LOG(graph)
+    auto res = utility::BellmanFord(graph, 0);
+    for (std::size_t i = 0; i < graph.get_vertices().size(); ++i) {
+        std::cout << i << "  " << res[i].first << "  " << res[i].second << std::endl;
+    }
 
     return 0;
 

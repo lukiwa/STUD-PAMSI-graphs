@@ -24,11 +24,19 @@ AdjListGraph::AdjListGraph(std::size_t number_of_vertices) {
 /**
  * @brief Adds new vertex with given data
  * @param data data stored in vertex
- * @return true if added
  */
 void AdjListGraph::insert_vertex(int data) {
+    if (number_of_vertices == 0) {
+        adj_list = new List<GraphEdge>[1];
+        vertices.push_back(GraphVertex(0, data));
+        ++number_of_vertices;
+        return;
+    }
     ++number_of_vertices;
+
+
     auto old_adj_list = adj_list;
+
 
     adj_list = new List<GraphEdge>[number_of_vertices];
     for (std::size_t i = 0; i < number_of_vertices - 1; ++i) {
@@ -36,7 +44,7 @@ void AdjListGraph::insert_vertex(int data) {
     }
 
 
-    vertices.push_back(GraphVertex(number_of_vertices - 1, data));
+    vertices.push_back(GraphVertex(number_of_vertices, data));
     delete[] old_adj_list;
 }
 
@@ -49,10 +57,11 @@ void AdjListGraph::insert_vertex(int data) {
  */
 bool AdjListGraph::insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight) {
     //if there aren't vertices with given id's
-
+    /*
     if (!vertices.is_present(GraphVertex(from_id)) || !vertices.is_present(GraphVertex(to_id))) {
         return false;
     }
+     */
 
 
     auto new_edge = GraphEdge(from_id, to_id, weight);

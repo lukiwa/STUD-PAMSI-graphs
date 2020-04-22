@@ -14,61 +14,6 @@
 namespace utility {
 
 
-/**
- * @brief Find a set of element i
- */
-    int find(std::unique_ptr<Subset[]> &subsets, int i) {
-
-        if (subsets[i].parent != i)
-            subsets[i].parent = utility::find(subsets, subsets[i].parent);
-
-        return subsets[i].parent;
-    }
-
-/**
- * @brief Do union of 2 sets
- */
-    void union1(std::unique_ptr<Subset[]> &subsets, int x, int y) {
-        int x_root = utility::find(subsets, x);
-        int y_root = utility::find(subsets, y);
-
-
-        if (subsets[x_root].rank < subsets[y_root].rank) {
-            subsets[x_root].parent = y_root;
-        } else if (subsets[x_root].rank > subsets[y_root].rank) {
-            subsets[y_root].parent = x_root;
-        } else {
-            subsets[y_root].parent = x_root;
-            subsets[x_root].rank++;
-        }
-    }
-
-/**
- * @brief Sort list of given type
- * @tparam T type stored in list
- * @param list list (will be changed)
- */
-    template<typename T>
-    static void sort_list(List<T> &list) {
-        auto array = new T[list.size()];
-        int cnt = 0;
-        for (auto i: list) {
-            array[cnt++] = i;
-        }
-
-        cnt = 0;
-
-
-        std::sort(array, array + list.size());
-
-        for (auto &i: list) {
-            i = array[cnt];
-            cnt++;
-        }
-        delete[] array;
-    }
-
-
     typedef std::pair<int32_t, List<std::size_t>> Pair;
 
     /**
@@ -77,12 +22,16 @@ namespace utility {
      * @param vertices_numb number of vertices in the graph
      * @param result result structure
      */
-    void CreatePath(std::size_t *parent, std::size_t vertices_numb, Pair *result) {
-        for (int i = 0; i < vertices_numb; ++i) {
+    void
+    CreatePath(std::unique_ptr<std::size_t[]> &parent,
+               std::size_t vertices_numb,
+               std::unique_ptr<Pair[]> &result,
+               std::size_t source_vertex_id) {
+        for (std::size_t i = 0; i < vertices_numb; ++i) {
             result[i].second.push_back(i);
         }
-        for (int i = 0; i < vertices_numb; ++i) {
-            for (int j = i; j != 0; j = parent[j]) {
+        for (std::size_t i = 0; i < vertices_numb; ++i) {
+            for (std::size_t j = i; j != source_vertex_id; j = parent[j]) {
                 result[i].second.push_front(parent[j]);
             }
 
@@ -90,16 +39,30 @@ namespace utility {
 
     }
 
+    /**
+     * @brief Doubles edges in graph to make it undirected
+     *        Creates new edge with swapped vertices id's for each existing vertex
+     * @param edges edges in graph
+     * @return list of doubled edges
+     */
+    List<GraphEdge> MakeUndirected(const List<GraphEdge> &edges) {
+        List<GraphEdge> ret_val;
 
-    Pair *BellmanFord(Graph &graph, std::size_t source_id) {
+        for (auto i: edges) {
+            ret_val.push_back(i);
+            ret_val.push_back(GraphEdge(i.to_id, i.from_id, i.weight));
+        }
+        return ret_val;
+    }
 
 
-        auto edges = graph.get_edges();
+    std::unique_ptr<Pair[]> BellmanFord(Graph &graph, std::size_t source_id) {
+
+        auto edges = MakeUndirected(graph.get_edges());
         std::size_t vertices_numb = graph.get_vertices().size();
         std::size_t edges_numb = edges.size();
-        auto res = new Pair[vertices_numb];
-        auto parent = new std::size_t[vertices_numb];
-        parent[0] = 0;
+        auto res = std::make_unique<Pair[]>(vertices_numb);
+        auto parent = std::make_unique<std::size_t[]>(vertices_numb);
 
 
         for (std::size_t i = 0; i < vertices_numb; i++) {
@@ -131,10 +94,9 @@ namespace utility {
             }
         }
 
+        CreatePath(parent, vertices_numb, res, source_id);
 
-        CreatePath(parent, vertices_numb, res);
 
-        delete[] parent;
         return res;
 
     }

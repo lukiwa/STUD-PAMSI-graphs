@@ -176,7 +176,7 @@ public:
                 (data, nullptr);
         if (head == nullptr) {
             head = temp;
-            tail = temp;
+            tail = head;
         } else {
             tail->next = temp;
             tail = tail->next;

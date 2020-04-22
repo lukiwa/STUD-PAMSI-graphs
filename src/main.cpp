@@ -13,40 +13,22 @@
 
 int main() {
 
-
-    auto graph = std::make_shared<AdjListGraph>(9);
-    graph->insert_edge(0, 1, 4);
-    graph->insert_edge(0, 7, 8);
-    graph->insert_edge(1, 2, 8);
-    graph->insert_edge(1, 7, 11);
-    graph->insert_edge(2, 3, 7);
-    graph->insert_edge(2, 8, 2);
-    graph->insert_edge(2, 5, 4);
-    graph->insert_edge(3, 4, 9);
-    graph->insert_edge(3, 5, 14);
-    graph->insert_edge(4, 5, 10);
-    graph->insert_edge(5, 6, 2);
-    graph->insert_edge(6, 7, 1);
-    graph->insert_edge(6, 8, 6);
-    graph->insert_edge(7, 8, 7);
+    AdjListGraph graph(6);
+    graph.insert_edge(0, 1, 10);
+    graph.insert_edge(1, 2, 20);
+    graph.insert_edge(2, 3, 30);
+    graph.insert_edge(3, 4, 40);
+    graph.insert_edge(0, 4, 5);
+    graph.insert_edge(4, 5, 15);
 
 
-    LOG(mst::KruskalMST(graph))
-
-
-/*
-    List<int> list;
-    for (int i = 50; i >= 0; --i) {
-        list.push_back(i);
+    auto res = utility::BellmanFord(graph, 0);
+    for (int i = 0; i < graph.get_vertices().size(); ++i) {
+        std::cout << i << "  " << res[i].first << "  " << res[i].second << std::endl;
     }
-    auto start = std::chrono::steady_clock::now();
-    utility::sort_list(list);
-    auto end = std::chrono::steady_clock::now();
+    delete [] res;
 
 
-    LOG(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count())
-    LOG(list)
-*/
     return 0;
 
 }

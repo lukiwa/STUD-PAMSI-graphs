@@ -15,7 +15,7 @@
 struct GraphEdge {
     std::size_t from_id;
     std::size_t to_id;
-    unsigned weight;
+    int32_t weight;
 
     GraphEdge();
 

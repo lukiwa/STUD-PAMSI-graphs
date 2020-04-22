@@ -12,15 +12,15 @@
 #include <memory>
 
 namespace mst {
-    
+
     /**
      * @brief Find MST using Kruskal's algorithm
      * @param graph graph of which MST will be found
      * @return edges of MST
      */
-    List<GraphEdge> KruskalMST(std::shared_ptr<Graph> graph) {
-        std::size_t vertices_num = graph->get_vertices().size();
-        auto edges = graph->get_edges();
+    List<GraphEdge> KruskalMST(Graph &graph) {
+        std::size_t vertices_num = graph.get_vertices().size();
+        auto edges = graph.get_edges();
         List<GraphEdge> result;
         std::size_t sorted_it = 0;
 
@@ -51,6 +51,7 @@ namespace mst {
         }
         return result;
     }
+
 };
 
 #endif //STUD_PAMSI_GRAPHS_ALGORITHMSMST_H

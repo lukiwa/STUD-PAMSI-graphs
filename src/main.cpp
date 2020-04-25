@@ -7,6 +7,7 @@
 #include "UtilityAlgorithms.h"
 #include <random>
 #include "RandomGraphGenerator.h"
+#include "GraphBuilder.h"
 
 
 #define LOG(x) { std::cout << x << std::endl; }
@@ -16,27 +17,34 @@ int main() {
     srand(time(NULL));
 
 
-    auto start = std::chrono::steady_clock::now();
-
-    AdjMatrixGraph graph(10);
 
 /*
-    graph.insert_edge(0, 1, 20);
-    graph.insert_edge(0, 2, 50);
-    graph.insert_edge(0, 3, 37);
-    graph.insert_edge(1, 3, 84);
-    graph.insert_edge(1, 4, 40);
-    graph.insert_edge(1, 9, 101);
-    graph.insert_edge(2, 5, 105);
-    graph.insert_edge(2, 6, 126);
-    graph.insert_edge(6, 7, 95);
-    graph.insert_edge(5, 6, 126);
-    graph.insert_edge(4, 8, 101);
-    LOG(graph.get_edges())
-*/
+    std::unique_ptr<Graph> graph = std::make_unique<AdjMatrixGraph>(10);
+    graph->insert_edge(0, 1, 20);
+    graph->insert_edge(0, 2, 50);
+    graph->insert_edge(0, 3, 37);
+    graph->insert_edge(1, 3, 84);
+    graph->insert_edge(1, 4, 40);
+    graph->insert_edge(1, 9, 101);
+    graph->insert_edge(2, 5, 105);
+    graph->insert_edge(2, 6, 126);
+    graph->insert_edge(6, 7, 95);
+    graph->insert_edge(5, 6, 126);
+    graph->insert_edge(4, 8, 101);
+    LOG(graph->get_edges())
 
-    RandomGraphGenerator rg(graph);
-   rg.Generate();
+    auto res = utility::BellmanFord(graph, 0);
+
+    for (std::size_t i = 0; i < graph->get_vertices().size(); ++i) {
+        std::cout << i << "  " << res[i].first << "  " << res[i].second << std::endl;
+    }
+*/
+    auto start = std::chrono::steady_clock::now();
+
+    GraphBuilder builder;
+    auto graph = builder.SetType(MATRIX).
+            SetSize(100).
+            SetDensity(0.25).Build();
 
 
     auto res = utility::BellmanFord(graph, 0);
@@ -47,10 +55,6 @@ int main() {
               << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
               << " ms" << std::endl;
 
-
-    for (std::size_t i = 0; i < graph.get_vertices().size(); ++i) {
-        std::cout << i << "  " << res[i].first << "  " << res[i].second << std::endl;
-    }
 
     return 0;
 

@@ -15,6 +15,10 @@ class GraphBuilder;
 
 class RandomGraphGenerator {
 private:
+
+    RandomGraphGenerator() = default;
+
+
     friend class GraphBuilder;
 
     std::unique_ptr<Graph> graph;

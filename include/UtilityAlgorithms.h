@@ -7,6 +7,7 @@
 
 
 #include "List.h"
+#include "Graph.h"
 #include <algorithm>
 #include <memory>
 #include <cmath>

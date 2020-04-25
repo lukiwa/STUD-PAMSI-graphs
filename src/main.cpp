@@ -4,22 +4,27 @@
 #include "List.h"
 #include <chrono>
 #include <algorithm>
-#include "UtilityAlgorithms.h"
 #include <random>
 #include "RandomGraphGenerator.h"
 #include "GraphBuilder.h"
+#include <boost/program_options.hpp>
+#include <string>
+#include <UserInterface.h>
+//#include "UtilityAlgorithms.h"
 
 
 #define LOG(x) { std::cout << x << std::endl; }
 
 
-int main() {
+int main(int argc, char **argv) {
     srand(time(NULL));
-
+    UserInterface ui;
+    ui.Begin(argc, argv);
 
 
 /*
     std::unique_ptr<Graph> graph = std::make_unique<AdjMatrixGraph>(10);
+
     graph->insert_edge(0, 1, 20);
     graph->insert_edge(0, 2, 50);
     graph->insert_edge(0, 3, 37);
@@ -38,13 +43,14 @@ int main() {
     for (std::size_t i = 0; i < graph->get_vertices().size(); ++i) {
         std::cout << i << "  " << res[i].first << "  " << res[i].second << std::endl;
     }
-*/
+
+/*
     auto start = std::chrono::steady_clock::now();
 
     GraphBuilder builder;
     auto graph = builder.SetType(MATRIX).
-            SetSize(100).
-            SetDensity(0.25).Build();
+            SetSize(1000).
+            SetDensity(1).Build();
 
 
     auto res = utility::BellmanFord(graph, 0);
@@ -55,7 +61,7 @@ int main() {
               << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
               << " ms" << std::endl;
 
-
+*/
     return 0;
 
 }

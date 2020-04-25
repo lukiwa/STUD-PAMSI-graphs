@@ -4,6 +4,9 @@
 
 #include "RandomGraphGenerator.h"
 
+/**
+ * @brief Generate graph with parameters set by builder
+ */
 void RandomGraphGenerator::Generate() {
     std::size_t created_edges = 0;
     GraphEdge tmp;
@@ -45,6 +48,10 @@ void RandomGraphGenerator::Generate() {
     }
 }
 
+/**
+ * @brief Constructs new generator class
+ * @param graph graph to be filled with edges
+ */
 RandomGraphGenerator::RandomGraphGenerator(std::unique_ptr<Graph> graph) :
         graph(std::move(graph)) {
     number_of_vertices = this->graph->get_vertices().size();
@@ -52,5 +59,7 @@ RandomGraphGenerator::RandomGraphGenerator(std::unique_ptr<Graph> graph) :
             (density * number_of_vertices *
              (number_of_vertices - 1)) / 2);
 }
+
+
 
 

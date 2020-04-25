@@ -29,7 +29,6 @@ public:
     }
 
     void Generate() {
-
         std::size_t created_edges = 0;
         GraphEdge tmp;
 
@@ -58,10 +57,13 @@ public:
                 continue;
             }
 
-            //avoid doubling edges
+            // UNUSED - huge runtime
+            // avoid doubling edges
+            /*
             if (graph.get_edges().is_present(tmp)) {
                 continue;
             }
+            */
             graph.insert_edge(tmp.from_id, tmp.to_id, tmp.weight);
             ++created_edges;
 

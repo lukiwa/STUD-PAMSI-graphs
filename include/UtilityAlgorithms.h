@@ -5,7 +5,7 @@
 #ifndef STUD_PAMSI_GRAPHS_UTILITYALGORITHMS_H
 #define STUD_PAMSI_GRAPHS_UTILITYALGORITHMS_H
 
-#include "Subset.h"
+
 #include "List.h"
 #include <algorithm>
 #include <memory>
@@ -13,7 +13,7 @@
 
 namespace utility {
 
-
+    //TODO implement own pair
     typedef std::pair<int32_t, List<std::size_t>> Pair;
 
     /**
@@ -34,70 +34,46 @@ namespace utility {
             for (std::size_t j = i; j != source_vertex_id; j = parent[j]) {
                 result[i].second.push_front(parent[j]);
             }
-
         }
 
-    }
-
-    /**
-     * @brief Doubles edges in graph to make it undirected
-     *        Creates new edge with swapped vertices id's for each existing vertex
-     * @param edges edges in graph
-     * @return list of doubled edges
-     */
-    List<GraphEdge> MakeUndirected(const List<GraphEdge> &edges) {
-        List<GraphEdge> ret_val;
-
-        for (auto i: edges) {
-            ret_val.push_back(i);
-            ret_val.push_back(GraphEdge(i.to_id, i.from_id, i.weight));
-        }
-        return ret_val;
     }
 
 
     std::unique_ptr<Pair[]> BellmanFord(Graph &graph, std::size_t source_id) {
 
-        auto edges = MakeUndirected(graph.get_edges());
+        auto edges = graph.get_edges();
         std::size_t vertices_numb = graph.get_vertices().size();
-        std::size_t edges_numb = edges.size();
         auto res = std::make_unique<Pair[]>(vertices_numb);
         auto parent = std::make_unique<std::size_t[]>(vertices_numb);
 
 
-        for (std::size_t i = 0; i < vertices_numb; i++) {
+        for (std::size_t i = 0; i < vertices_numb; ++i) {
             res[i].first = INT32_MAX;
         }
         res[source_id].first = 0;
 
         for (std::size_t i = 1; i < vertices_numb; ++i) {
-            for (std::size_t j = 0; j < edges_numb; ++j) {
-                std::size_t u = edges.at(j).from_id;
-                std::size_t v = edges.at(j).to_id;
-                int32_t weight = edges.at(j).weight;
+            bool has_relaxed = false;
+            for (auto e: edges) {
+                std::size_t u = e.from_id;
+                std::size_t v = e.to_id;
+                int32_t weight = e.weight;
+
                 if (res[u].first != INT32_MAX && res[u].first + weight < res[v].first) {
                     res[v].first = res[u].first + weight;
-
                     parent[v] = u;
+                    has_relaxed = true;
 
                 }
             }
-        }
-
-        //negative weight cycle check
-        for (std::size_t i = 0; i < edges_numb; ++i) {
-            std::size_t u = edges.at(i).from_id;
-            std::size_t v = edges.at(i).to_id;
-            int32_t weight = edges.at(i).weight;
-            if (res[u].first != INT32_MAX && res[u].first + weight < res[v].first) {
-                throw;
+            if (!has_relaxed) {
+                CreatePath(parent, vertices_numb, res, source_id);
+                return res;
             }
         }
 
-        CreatePath(parent, vertices_numb, res, source_id);
-
-
-        return res;
+        //At this point negative cycle must have occured - throw exception:
+        throw;
 
     }
 

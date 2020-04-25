@@ -53,20 +53,18 @@ void AdjListGraph::insert_vertex(int data) {
  * @param from_id id of first vertex
  * @param to_id id of the second vertex
  * @param weight cost of the edge
- * @return false if there aren't vertices with given id's
+ * @return false if id's out of bound
  */
 bool AdjListGraph::insert_edge(std::size_t from_id, std::size_t to_id, unsigned weight) {
-    //if there aren't vertices with given id's
-    /*
-    if (!vertices.is_present(GraphVertex(from_id)) || !vertices.is_present(GraphVertex(to_id))) {
+    if (from_id >= number_of_vertices ||
+        to_id >= number_of_vertices) {
         return false;
     }
-     */
 
-
-    auto new_edge = GraphEdge(from_id, to_id, weight);
-    adj_list[from_id].push_back(new_edge);
-    adj_list[to_id].push_back(new_edge);
+    auto edge = GraphEdge(from_id, to_id, weight);
+    auto edge_reversed = GraphEdge(to_id, from_id, weight);
+    adj_list[from_id].push_back(edge);
+    adj_list[to_id].push_back(edge_reversed);
 
     return true;
 
@@ -96,9 +94,7 @@ List<GraphEdge> AdjListGraph::get_edges() const {
     List<GraphEdge> ret_val;
     for (std::size_t i = 0; i < number_of_vertices; ++i) {
         for (auto j: adj_list[i]) {
-            if (!ret_val.is_present(j)) {
-                ret_val.push_back(j);
-            }
+            ret_val.push_back(j);
         }
     }
     //if do not have edges
@@ -177,7 +173,7 @@ std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj) {
 bool AdjListGraph::remove_edge(const GraphEdge &edge) {
 
     bool found = false;
-    //reverse edge, not directed graph
+
     auto reversed = GraphEdge(edge.to_id, edge.from_id, edge.weight);
     for (std::size_t i = 0; i < number_of_vertices; ++i) {
         for (auto &j: adj_list[i]) {
@@ -196,8 +192,8 @@ bool AdjListGraph::remove_edge(const GraphEdge &edge) {
 }
 
 /**
- * @brief Removes vertex and all edges coming from/to it
- * @param data id of the vertex
+ * @brief Removes vertex with given id and all edges coming from/to it
+ * @param id vertex id
  */
 bool AdjListGraph::remove_vertex(std::size_t id) {
     if (id >= number_of_vertices) {

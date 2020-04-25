@@ -8,7 +8,7 @@
  * @brief Default constructor for graph
  */
 AdjMatrixGraph::AdjMatrixGraph() : Graph() {
-   adj_matrix = nullptr;
+    adj_matrix = nullptr;
 }
 
 /**
@@ -63,16 +63,12 @@ bool AdjMatrixGraph::insert_edge(std::size_t from_id, std::size_t to_id, unsigne
         to_id >= number_of_vertices) {
         return false;
     }
-    /*
-    if (!vertices.is_present(GraphVertex{from_id}) ||
-        !vertices.is_present(GraphVertex{to_id})) {
-        return false;
-    }
-     */
+
 
     GraphEdge edge(from_id, to_id, weight);
+    GraphEdge reversed_edge(to_id, from_id, weight);
     adj_matrix[from_id][to_id] = edge;
-    adj_matrix[to_id][from_id] = edge;
+    adj_matrix[to_id][from_id] = reversed_edge;
     return true;
 
 }
@@ -104,9 +100,10 @@ const List<GraphEdge> AdjMatrixGraph::incident_edges(std::size_t id) const {
  */
 List<GraphEdge> AdjMatrixGraph::get_edges() const {
     List<GraphEdge> ret_val;
+    //symmetrical matrix
     for (std::size_t i = 0; i < number_of_vertices; ++i) {
         for (std::size_t j = 0; j < number_of_vertices; ++j) {
-            if (!ret_val.is_present(adj_matrix[i][j]) && adj_matrix[i][j] != dummy) {
+            if (adj_matrix[i][j] != dummy) {
                 ret_val.push_back(adj_matrix[i][j]);
             }
         }
@@ -165,7 +162,7 @@ bool AdjMatrixGraph::remove_edge(const GraphEdge &edge) {
 
 
 /**
- * @brief Change weight of the
+ * @brief Change weight of the edge
  * @param edge
  * @param new_weight
  * @return true if replaced, false indices out of bound
@@ -219,8 +216,8 @@ void AdjMatrixGraph::insert_vertex(int data) {
 }
 
 /**
- * @brief Remove first vertex with given data
- * @param data data stored in vertex
+ * @brief Remove vertex with given id and all edges connected
+ * @param vertex id
  * @return true if removed, false otherwise
  */
 bool AdjMatrixGraph::remove_vertex(std::size_t id) {

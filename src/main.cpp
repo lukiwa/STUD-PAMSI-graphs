@@ -14,29 +14,40 @@
 
 int main() {
     srand(time(NULL));
-/*
-    AdjListGraph graph;
-    for (int j = 0; j < 6; ++j) {
-        graph.insert_vertex(j);
-    }
-    graph.insert_edge(0, 1, 10);
-    graph.insert_edge(1, 2, 20);
-    graph.insert_edge(2, 3, 30);
-    graph.insert_edge(3, 4, 40);
-    graph.insert_edge(0, 4, 5);
-    graph.insert_edge(4, 5, 15);
 
-    LOG(graph)
-    auto res = utility::BellmanFord(graph, 1);
-    for (std::size_t i = 0; i < graph.get_vertices().size(); ++i) {
-        std::cout << i << "  " << res[i].first << "  " << res[i].second << std::endl;
-    }
-*/
+
+    auto start = std::chrono::steady_clock::now();
+
     AdjMatrixGraph graph(10);
+
+/*
+    graph.insert_edge(0, 1, 20);
+    graph.insert_edge(0, 2, 50);
+    graph.insert_edge(0, 3, 37);
+    graph.insert_edge(1, 3, 84);
+    graph.insert_edge(1, 4, 40);
+    graph.insert_edge(1, 9, 101);
+    graph.insert_edge(2, 5, 105);
+    graph.insert_edge(2, 6, 126);
+    graph.insert_edge(6, 7, 95);
+    graph.insert_edge(5, 6, 126);
+    graph.insert_edge(4, 8, 101);
+    LOG(graph.get_edges())
+*/
+
     RandomGraphGenerator rg(graph);
-    rg.Generate();
-    LOG(graph)
+   rg.Generate();
+
+
     auto res = utility::BellmanFord(graph, 0);
+
+    auto end = std::chrono::steady_clock::now();
+
+    std::cout << "Elapsed time in nanoseconds : "
+              << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
+              << " ms" << std::endl;
+
+
     for (std::size_t i = 0; i < graph.get_vertices().size(); ++i) {
         std::cout << i << "  " << res[i].first << "  " << res[i].second << std::endl;
     }

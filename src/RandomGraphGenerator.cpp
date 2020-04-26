@@ -10,7 +10,6 @@
 void RandomGraphGenerator::Generate() {
     std::size_t created_edges = 0;
     GraphEdge tmp;
-    List<GraphEdge> spanning;
 
 
     //start with 2 vertices connected

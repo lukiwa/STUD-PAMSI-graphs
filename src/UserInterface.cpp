@@ -3,7 +3,7 @@
 //
 
 
-//#include <UtilityAlgorithms.h>
+#include <UtilityAlgorithms.h>
 #include "UserInterface.h"
 
 #define LOG(x) { std::cout << x << std::endl; }
@@ -17,7 +17,7 @@ void UserInterface::Begin(int argc, char **argv) {
 
 
     auto start = std::chrono::steady_clock::now();
-  //  utility::BellmanFord(*graph, 0);
+    utility::BellmanFord(*graph, 0);
     auto end = std::chrono::steady_clock::now();
     LOG(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count())
 
@@ -41,11 +41,16 @@ bool UserInterface::Parse(int argc, char **argv) {
             ("read,r", po::value<std::string>(), "Read graph from file")
             ("type,t", po::value<std::string>(), "Graph type - [LIST, MATRIX]")
             ("size,s", po::value<std::size_t>(), "Number of graph vertices")
-            ("density,d", po::value<double>(), "Graph density (eg. 0.5 = 50%)");
+            ("density,d", po::value<double>(), "Graph density (eg. 0.5 = 50%)")
+            ("instances,i", po::value<std::size_t>(), "Number of graph instances to be tested");
 
     po::variables_map vm;
     po::store(po::command_line_parser(argc, argv).options(description).run(), vm);
     po::notify(vm);
+    if (argc == 1) {
+        LOG(description)
+        return false;
+    }
 
     if (vm.count("help")) {
         LOG(description)

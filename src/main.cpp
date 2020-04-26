@@ -10,7 +10,7 @@
 #include <boost/program_options.hpp>
 #include <string>
 #include <UserInterface.h>
-#include "UtilityAlgorithms.h"
+//#include "UtilityAlgorithms.h"
 
 
 #define LOG(x) { std::cout << std::boolalpha<< x << std::endl; }
@@ -19,11 +19,11 @@
 int main(int argc, char **argv) {
 
     srand(time(NULL));
-    // UserInterface ui;
-    //ui.Begin(argc, argv);
+    UserInterface ui;
+    ui.Begin(argc, argv);
 
 
-
+/*
     std::unique_ptr<Graph> graph = std::make_unique<AdjMatrixGraph>(10);
 
     graph->insert_edge(0, 1, 20);
@@ -44,14 +44,14 @@ int main(int argc, char **argv) {
     for (std::size_t i = 0; i < graph->get_vertices().size(); ++i) {
         std::cout << i << "  " << res[i].first << "  " << res[i].second << std::endl;
     }
+*/
 
 
 /*
 
-
     GraphBuilder builder;
     auto start = std::chrono::steady_clock::now();
-    auto graph = builder.SetType(MATRIX).
+    auto graph = builder.SetType(LIST).
             SetSize(1000).
             SetDensity(1).Build();
     auto res = utility::BellmanFord(*graph, 0);

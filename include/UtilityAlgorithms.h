@@ -73,7 +73,7 @@ namespace utility {
             }
         }
 
-        //At this point negative cycle must have occured - throw exception:
+        //At this point negative cycle must have occurred - throw exception:
         throw;
 
     }

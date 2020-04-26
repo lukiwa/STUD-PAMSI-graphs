@@ -9,17 +9,18 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include "List.h"
 
 
 class ResultToFileSaver {
 private:
+    typedef std::pair<int32_t, List<std::size_t>> Pair;
+
+    std::string main_time_dir;
+    std::string main_algorithm_dir;
 
 
-    std::string main_dir;
-    std::string filename;
-    std::string extenstion;
 
-    std::ostringstream full_path;
 
     std::size_t size;
     std::string type;
@@ -37,8 +38,9 @@ public:
 
     void setInstances(int instances);
 
+    void SaveAlgorithmResults(std::unique_ptr<Pair[]> &result);
 
-    void SaveToFile(double *time);
+    void SaveTime(double *time);
 
     ResultToFileSaver();
 

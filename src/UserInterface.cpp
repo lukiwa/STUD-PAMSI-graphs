@@ -8,6 +8,10 @@
 
 #define LOG(x) { std::cout << x << std::endl; }
 
+/**
+ * @brief Begin working on parsing, generating graph,
+ *        performing bellman ford, and measuring time
+ */
 void UserInterface::Begin(int argc, char **argv) {
 
     if (!Parse(argc, argv)) {
@@ -16,11 +20,13 @@ void UserInterface::Begin(int argc, char **argv) {
     for (int i = 0; i < instances; ++i) {
         graph = builder.Build();
         auto start = std::chrono::steady_clock::now();
-        utility::BellmanFord(*graph, 0);
+        auto res = utility::BellmanFord(*graph, 0);
         auto end = std::chrono::steady_clock::now();
         time[i] = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+        if (write_result) { saver.SaveAlgorithmResults(res); }
     }
-    saver.SaveToFile(time);
+    saver.SaveTime(time);
+
 
 }
 
@@ -38,7 +44,7 @@ bool UserInterface::Parse(int argc, char **argv) {
             ("help",
              "If user want to read graph from file should only specify read path, optionally result path")
             ("xdemo", "Perform demo of graph methods")
-            ("write,w", po::value<std::string>(), "Shortest path result path")
+            ("write,w", "Write shortest path to file")
             ("read,r", po::value<std::string>(), "Read graph from file")
             ("type,t", po::value<std::string>(), "Graph type - [LIST, MATRIX]")
             ("size,s", po::value<std::size_t>(), "Number of graph vertices")
@@ -58,6 +64,9 @@ bool UserInterface::Parse(int argc, char **argv) {
         //TODO
         LOG("demo")
         return false;
+    }
+    if (vm.count("write")) {
+        write_result = true;
     }
 
     if (vm.count("type")) {
@@ -91,7 +100,7 @@ bool UserInterface::Parse(int argc, char **argv) {
     if (vm.count("instances")) {
         this->instances = vm["instances"].as<std::size_t>();
         saver.setInstances(instances);
-        //this->time = new double[instances];
+        this->time = new double[instances];
         LOG(instances);
     }
     return true;
@@ -99,6 +108,7 @@ bool UserInterface::Parse(int argc, char **argv) {
 
 UserInterface::UserInterface() {
     this->time = nullptr;
+    write_result = false;
 }
 
 UserInterface::~UserInterface() {

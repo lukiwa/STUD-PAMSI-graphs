@@ -14,6 +14,10 @@ enum GraphType {
 };
 
 class GraphBuilder {
+    double density;
+    std::size_t number_of_vertices;
+    std::size_t number_of_edges;
+
     std::unique_ptr<Graph> graph;
     std::unique_ptr<RandomGraphGenerator> generator;
     GraphType type;

@@ -11,12 +11,15 @@
 #include "GraphBuilder.h"
 #include <memory>
 #include <chrono>
-
+#include "ResultToFileSaver.h"
 
 class UserInterface {
 private:
     GraphBuilder builder;
     std::unique_ptr<Graph> graph;
+    ResultToFileSaver saver;
+    int instances;
+    double *time;
 
     /*TODO
     std::string algorithm_name;
@@ -38,9 +41,9 @@ private:
 public:
     void Begin(int argc, char **argv);
 
-    UserInterface() = default;
+    UserInterface();
 
-    ~UserInterface() = default;
+    ~UserInterface();
 };
 
 

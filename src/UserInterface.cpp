@@ -13,13 +13,14 @@ void UserInterface::Begin(int argc, char **argv) {
     if (!Parse(argc, argv)) {
         return;
     }
-    graph = builder.Build();
-
-
-    auto start = std::chrono::steady_clock::now();
-    utility::BellmanFord(*graph, 0);
-    auto end = std::chrono::steady_clock::now();
-    LOG(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count())
+    for (int i = 0; i < instances; ++i) {
+        graph = builder.Build();
+        auto start = std::chrono::steady_clock::now();
+        utility::BellmanFord(*graph, 0);
+        auto end = std::chrono::steady_clock::now();
+        time[i] = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    }
+    saver.SaveToFile(time);
 
 }
 
@@ -47,12 +48,9 @@ bool UserInterface::Parse(int argc, char **argv) {
     po::variables_map vm;
     po::store(po::command_line_parser(argc, argv).options(description).run(), vm);
     po::notify(vm);
-    if (argc == 1) {
-        LOG(description)
-        return false;
-    }
 
-    if (vm.count("help")) {
+
+    if (vm.count("help") || argc == 1) {
         LOG(description)
         return false;
     }
@@ -67,22 +65,42 @@ bool UserInterface::Parse(int argc, char **argv) {
 
         if (option == "LIST") {
             builder.SetType(GraphType::LIST);
+            saver.setType(option);
             LOG(option)
         } else if (option == "MATRIX") {
             builder.SetType(GraphType::MATRIX);
+            saver.setType(option);
             LOG(option)
         } else {
             LOG(description)
         }
     }
     if (vm.count("size")) {
-        builder.SetSize(vm["size"].as<std::size_t>());
-        LOG(vm["size"].as<std::size_t>());
-
+        std::size_t size = vm["size"].as<std::size_t>();
+        builder.SetSize(size);
+        saver.setSize(size);
+        LOG(size);
     }
     if (vm.count("density")) {
-        builder.SetDensity(vm["density"].as<double>());
-        LOG(vm["density"].as<double>())
+        double density = vm["density"].as<double>();
+        builder.SetDensity(density);
+        saver.setDensity(density);
+        LOG(density)
+    }
+
+    if (vm.count("instances")) {
+        this->instances = vm["instances"].as<std::size_t>();
+        saver.setInstances(instances);
+        //this->time = new double[instances];
+        LOG(instances);
     }
     return true;
+}
+
+UserInterface::UserInterface() {
+    this->time = nullptr;
+}
+
+UserInterface::~UserInterface() {
+    delete[] time;
 }

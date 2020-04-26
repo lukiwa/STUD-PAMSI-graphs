@@ -60,9 +60,25 @@ bool AdjListGraph::insert_edge(std::size_t from_id, std::size_t to_id, unsigned 
         to_id >= number_of_vertices) {
         return false;
     }
-
     auto edge = GraphEdge(from_id, to_id, weight);
     auto edge_reversed = GraphEdge(to_id, from_id, weight);
+
+    if (adj_list[from_id].size() > adj_list[to_id].size()) {
+        for (auto i: adj_list[to_id]) {
+            if (i == edge_reversed) {
+                return false;
+            }
+        }
+    }
+    if (adj_list[from_id].size() < adj_list[to_id].size()) {
+        for (auto i: adj_list[from_id]) {
+            if (i == edge) {
+                return false;
+            }
+        }
+    }
+
+
     adj_list[from_id].push_back(edge);
     adj_list[to_id].push_back(edge_reversed);
 

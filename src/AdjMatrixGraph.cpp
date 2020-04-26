@@ -63,6 +63,10 @@ bool AdjMatrixGraph::insert_edge(std::size_t from_id, std::size_t to_id, unsigne
         to_id >= number_of_vertices) {
         return false;
     }
+    if (adj_matrix[from_id][to_id] != dummy ||
+        adj_matrix[to_id][from_id] != dummy) {
+        return false;
+    }
 
 
     GraphEdge edge(from_id, to_id, weight);

@@ -30,7 +30,11 @@ GraphBuilder &GraphBuilder::SetSize(std::size_t size) {
             break;
         }
     }
-    generator = std::make_unique<RandomGraphGenerator>(std::move(graph));
+    generator = std::make_unique<RandomGraphGenerator>(*graph);
+
+    generator->number_of_vertices = size;
+
+
     return *this;
 }
 
@@ -41,6 +45,9 @@ GraphBuilder &GraphBuilder::SetSize(std::size_t size) {
  */
 GraphBuilder &GraphBuilder::SetDensity(double density) {
     generator->density = density;
+    generator->number_of_edges = static_cast<std::size_t >(
+            (density * generator->number_of_vertices *
+             (generator->number_of_vertices - 1)) / 2);
     return *this;
 }
 
@@ -50,5 +57,5 @@ GraphBuilder &GraphBuilder::SetDensity(double density) {
  */
 std::unique_ptr<Graph> GraphBuilder::Build() {
     generator->Generate();
-    return std::move(generator->graph);
+    return std::move(graph);
 }

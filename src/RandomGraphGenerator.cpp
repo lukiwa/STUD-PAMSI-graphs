@@ -10,10 +10,11 @@
 void RandomGraphGenerator::Generate() {
     std::size_t created_edges = 0;
     GraphEdge tmp;
+    List<GraphEdge> spanning;
 
 
     //start with 2 vertices connected
-    graph->insert_edge(0, 1, random() % max_weight + 1);
+    graph.insert_edge(0, 1, random() % max_weight + 1);
     ++created_edges;
 
     //generate "spanning tree"
@@ -21,7 +22,7 @@ void RandomGraphGenerator::Generate() {
         tmp.from_id = random() % i;
         tmp.to_id = i;
         tmp.weight = random() % max_weight + 1;
-        graph->insert_edge(tmp.from_id, tmp.to_id, tmp.weight);
+        graph.insert_edge(tmp.from_id, tmp.to_id, tmp.weight);
         ++created_edges;
     }
 
@@ -36,14 +37,10 @@ void RandomGraphGenerator::Generate() {
             continue;
         }
 
-        // UNUSED - huge runtime
-        // avoid doubling edges
-        /*
-        if (graph.get_edges().is_present(tmp)) {
+        //avoid duplicates
+        if (!graph.insert_edge(tmp.from_id, tmp.to_id, tmp.weight)) {
             continue;
         }
-        */
-        graph->insert_edge(tmp.from_id, tmp.to_id, tmp.weight);
         ++created_edges;
     }
 }
@@ -52,12 +49,8 @@ void RandomGraphGenerator::Generate() {
  * @brief Constructs new generator class
  * @param graph graph to be filled with edges
  */
-RandomGraphGenerator::RandomGraphGenerator(std::unique_ptr<Graph> graph) :
-        graph(std::move(graph)) {
-    number_of_vertices = this->graph->get_vertices().size();
-    number_of_edges = static_cast<std::size_t >(
-            (density * number_of_vertices *
-             (number_of_vertices - 1)) / 2);
+RandomGraphGenerator::RandomGraphGenerator(Graph &graph) :
+        graph(graph) {
 }
 
 

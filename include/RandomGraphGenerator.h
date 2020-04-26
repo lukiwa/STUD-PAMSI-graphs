@@ -21,15 +21,15 @@ private:
 
     friend class GraphBuilder;
 
-    std::unique_ptr<Graph> graph;
+    Graph& graph;
 
-    double density = 0;
+    double density;
     std::size_t max_weight = INT8_MAX;
     std::size_t number_of_vertices;
     std::size_t number_of_edges;
 public:
 
-    explicit RandomGraphGenerator(std::unique_ptr<Graph> graph);
+    explicit RandomGraphGenerator(Graph& graph);
 
     void Generate();
 

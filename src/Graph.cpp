@@ -26,7 +26,9 @@ std::size_t Graph::opposite(std::size_t vertex_id, const GraphEdge &edge) {
  * @return list of vertices
  */
 List<GraphVertex> Graph::get_vertices() const {
-    return vertices;
+    if (number_of_vertices != 0) {
+        return vertices;
+    }
 }
 
 /**

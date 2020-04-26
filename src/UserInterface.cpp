@@ -3,7 +3,7 @@
 //
 
 
-#include <UtilityAlgorithms.h>
+//#include <UtilityAlgorithms.h>
 #include "UserInterface.h"
 
 #define LOG(x) { std::cout << x << std::endl; }
@@ -17,7 +17,7 @@ void UserInterface::Begin(int argc, char **argv) {
 
 
     auto start = std::chrono::steady_clock::now();
-    utility::BellmanFord(graph, 0);
+  //  utility::BellmanFord(*graph, 0);
     auto end = std::chrono::steady_clock::now();
     LOG(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count())
 
@@ -79,4 +79,5 @@ bool UserInterface::Parse(int argc, char **argv) {
         builder.SetDensity(vm["density"].as<double>());
         LOG(vm["density"].as<double>())
     }
+    return true;
 }

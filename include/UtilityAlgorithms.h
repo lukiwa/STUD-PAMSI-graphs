@@ -40,10 +40,10 @@ namespace utility {
     }
 
 
-    std::unique_ptr<Pair[]> BellmanFord(std::unique_ptr<Graph> &graph, std::size_t source_id) {
+    std::unique_ptr<Pair[]> BellmanFord(Graph &graph, std::size_t source_id) {
 
-        auto edges = graph->get_edges();
-        std::size_t vertices_numb = graph->get_vertices().size();
+        auto edges = graph.get_edges();
+        std::size_t vertices_numb = graph.get_vertices().size();
         auto res = std::make_unique<Pair[]>(vertices_numb);
         auto parent = std::make_unique<std::size_t[]>(vertices_numb);
 

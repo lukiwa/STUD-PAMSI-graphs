@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="STUD_PAMSI_graphs"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="STUD_PAMSI_graphs">
+				<Option output="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/STUD_PAMSI_graphs" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 STUD_PAMSI_graphs"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="STUD_PAMSI_graphs/fast">
+				<Option output="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/STUD_PAMSI_graphs" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 STUD_PAMSI_graphs/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/AdjListGraph.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/AdjMatrixGraph.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/Graph.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/GraphBuilder.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/GraphEdge.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/GraphFileManager.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/GraphVertex.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/List.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/ListNode.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/ListNodeIterator.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/MyPair.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/RandomGraphGenerator.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/ResultToFileSaver.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/UserInterface.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/UtilityAlgorithms.h">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/AdjListGraph.cpp">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/AdjMatrixGraph.cpp">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/Graph.cpp">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphBuilder.cpp">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphEdge.cpp">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphFileManager.cpp">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphVertex.cpp">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/RandomGraphGenerator.cpp">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/ResultToFileSaver.cpp">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/UserInterface.cpp">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/main.cpp">
+			<Option target="STUD_PAMSI_graphs"/>
+		</Unit>
+		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

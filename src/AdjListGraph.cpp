@@ -44,7 +44,7 @@ void AdjListGraph::insert_vertex(int data) {
     }
 
 
-    vertices.push_back(GraphVertex(number_of_vertices, data));
+    vertices.push_back(GraphVertex(number_of_vertices - 1, data));
     delete[] old_adj_list;
 }
 
@@ -139,7 +139,7 @@ bool AdjListGraph::are_adjacent(std::size_t v, std::size_t u) const {
 
     for (auto i: adj_list[v]) {
         for (auto j: adj_list[u]) {
-            if (i == j) {
+            if (i.from_id == j.to_id && i.to_id == j.from_id) {
                 return true; //if they have common edge
             }
         }
@@ -169,18 +169,6 @@ bool AdjListGraph::replace(const GraphEdge &edge, unsigned new_weight) {
     return has_changed;
 }
 
-
-/**
- * @brief Display graph as adjacency list
- */
-std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj) {
-    for (std::size_t i = 0; i < obj.number_of_vertices; ++i) {
-        os << i << obj.adj_list[i] << std::endl;
-    }
-
-    return os;
-
-}
 
 /**
  * @brief Removes edge
@@ -263,6 +251,14 @@ AdjListGraph::~AdjListGraph() {
 
 AdjListGraph::AdjListGraph() : Graph() {
     adj_list = nullptr;
+}
+
+void AdjListGraph::print() const {
+    for (std::size_t i = 0; i < this->number_of_vertices; ++i) {
+        std::cout << i << this->adj_list[i] << std::endl;
+    }
+
+
 }
 
 

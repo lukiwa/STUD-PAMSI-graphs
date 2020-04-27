@@ -32,7 +32,8 @@ public:
 
     bool are_adjacent(std::size_t v, std::size_t u) const override;
 
-    friend std::ostream &operator<<(std::ostream &os, const AdjMatrixGraph &obj);
+
+    void print() const override;
 
     bool remove_edge(const GraphEdge &edge) override;
 

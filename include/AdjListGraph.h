@@ -38,8 +38,7 @@ public:
     bool replace(const GraphEdge &edge, unsigned new_weight) override;
 
 
-
-    friend std::ostream &operator<<(std::ostream &os, const AdjListGraph &obj);
+    void print() const override;
 
 
     bool remove_edge(const GraphEdge &edge) override;

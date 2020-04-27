@@ -10,16 +10,15 @@
 #include <sstream>
 #include <string>
 #include "List.h"
+#include "MyPair.h"
 
 
 class ResultToFileSaver {
 private:
-    typedef std::pair<int32_t, List<std::size_t>> Pair;
+    typedef MyPair<int32_t, List<std::size_t>> Pair;
 
     std::string main_time_dir;
     std::string main_algorithm_dir;
-
-
 
 
     std::size_t size;

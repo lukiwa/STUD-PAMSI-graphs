@@ -20,9 +20,10 @@ void UserInterface::Begin(int argc, char **argv) {
     for (int i = 0; i < instances; ++i) {
         graph = builder.Build();
         auto start = std::chrono::steady_clock::now();
-        auto res = utility::BellmanFord(*graph, 0);
+        auto res = utility::BellmanFord(*graph, source_vertex);
         auto end = std::chrono::steady_clock::now();
-        time[i] = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+        time[i] = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+        //checks whether user wants to save algorithm results to file
         if (write_result) { saver.SaveAlgorithmResults(res); }
     }
     saver.SaveTime(time);
@@ -45,7 +46,7 @@ bool UserInterface::Parse(int argc, char **argv) {
              "If user want to read graph from file should only specify read path, optionally result path")
             ("xdemo", "Perform demo of graph methods")
             ("write,w", "Write shortest path to file")
-            ("read,r", po::value<std::string>(), "Read graph from file")
+            ("read,r", po::value<std::string>(), "Read graph from file then terminates program")
             ("type,t", po::value<std::string>(), "Graph type - [LIST, MATRIX]")
             ("size,s", po::value<std::size_t>(), "Number of graph vertices")
             ("density,d", po::value<double>(), "Graph density (eg. 0.5 = 50%)")
@@ -61,8 +62,7 @@ bool UserInterface::Parse(int argc, char **argv) {
         return false;
     }
     if (vm.count("xdemo")) {
-        //TODO
-        LOG("demo")
+        PerformDemo();
         return false;
     }
     if (vm.count("write")) {
@@ -71,18 +71,16 @@ bool UserInterface::Parse(int argc, char **argv) {
 
     if (vm.count("type")) {
         std::string option = vm["type"].as<std::string>();
-
-        if (option == "LIST") {
-            builder.SetType(GraphType::LIST);
-            saver.setType(option);
-            LOG(option)
-        } else if (option == "MATRIX") {
-            builder.SetType(GraphType::MATRIX);
-            saver.setType(option);
-            LOG(option)
-        } else {
+        auto type = RecogniseType(option);
+        if (type == GraphType::UNRECOGNISED) {
             LOG(description)
+            return false;
         }
+        builder.SetType(type);
+        saver.setType(option);
+        LOG(option)
+
+
     }
     if (vm.count("size")) {
         std::size_t size = vm["size"].as<std::size_t>();
@@ -103,6 +101,21 @@ bool UserInterface::Parse(int argc, char **argv) {
         this->time = new double[instances];
         LOG(instances);
     }
+    if (vm.count("read")) {
+        std::string option = vm["read"].as<std::string>();
+        auto type = RecogniseType(option);
+        if (type == GraphType::UNRECOGNISED) {
+            LOG(description)
+            return false;
+        }
+
+        graph = utility::ReadGraphFromFile(type, source_vertex);
+        LOG("Readed, graph : ")
+        graph->print();
+        return false;
+
+    }
+
     return true;
 }
 
@@ -113,4 +126,93 @@ UserInterface::UserInterface() {
 
 UserInterface::~UserInterface() {
     delete[] time;
+}
+
+/**
+ * @brief Recognise graph type by string input
+ * @return Graph type
+ */
+GraphType UserInterface::RecogniseType(std::string option) const {
+    if (option == "LIST") {
+        return GraphType::LIST;
+    } else if (option == "MATRIX") {
+        return GraphType::MATRIX;
+    }
+    return GraphType::UNRECOGNISED;
+}
+
+/**
+ * @brief Perform demonstration of all graph methods
+ */
+void UserInterface::PerformDemo() {
+    std::string s_type;
+    GraphType type;
+    LOG("Type of the graph (LIST or MATRIX): ")
+    std::cin >> s_type;
+    type = RecogniseType(s_type);
+    if (type == UNRECOGNISED) {
+        return;
+    }
+    graph = utility::ReadGraphFromFile(type, source_vertex);
+    LOG("Readed graph from file: ")
+    graph->print();
+    LOG(std::endl)
+
+
+    LOG("Add edge {0 1 777} ")
+    graph->insert_edge(0, 1, 777);
+    graph->print();
+    LOG(std::endl)
+
+    LOG("Incident edges to 2 : ");
+    LOG(graph->incident_edges(2))
+    LOG(std::endl)
+
+    LOG("Get edges : ")
+    LOG(graph->get_edges());
+    LOG(std::endl)
+
+    LOG("Are adjacent id 5 and 2 (declared in file : ")
+    LOG(graph->are_adjacent(5, 2))
+    LOG(std::endl)
+
+    LOG("Removing edge {5 2 92}: ")
+    graph->remove_edge(GraphEdge(5, 2, 92));
+    graph->print();
+    LOG(std::endl)
+
+    LOG("Replacing {2 3 4} with weight 17")
+    graph->replace(GraphEdge(2, 3, 4), 17);
+    graph->print();
+    LOG(std::endl)
+
+    LOG("Inserting vertex with new data 12")
+    graph->insert_vertex(12);
+    LOG(graph->get_vertices())
+    graph->print();
+    LOG(std::endl)
+
+    LOG("Replacing vertex data 12 with 14")
+    graph->vertex_replace(12, 14);
+    LOG(graph->get_vertices())
+    LOG(std::endl)
+
+
+    LOG("Removing vertex with id 1")
+    graph->remove_vertex(1);
+    graph->print();
+    LOG(std::endl)
+
+    LOG("Opposite vertex of 2 by edge {2 3 4}")
+    LOG(graph->opposite(2, GraphEdge(2, 3, 4)));
+    LOG(std::endl)
+
+    LOG("End vertices of {2 3 4}")
+    LOG(graph->end_vertices(GraphEdge(2, 3, 4)))
+
+
+
+    // auto res = utility::
+
+
 }

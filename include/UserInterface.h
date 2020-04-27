@@ -19,12 +19,15 @@ private:
     std::unique_ptr<Graph> graph;
     ResultToFileSaver saver;
     int instances;
+    int source_vertex = 0;
     double *time;
     bool write_result;
 
 
-
     bool Parse(int argc, char **argv);
+
+    GraphType RecogniseType(std::string option) const;
+    void PerformDemo();
 
 public:
     void Begin(int argc, char **argv);

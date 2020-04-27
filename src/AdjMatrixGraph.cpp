@@ -39,17 +39,6 @@ AdjMatrixGraph::AdjMatrixGraph(std::size_t number_of_vertices) {
     }
 }
 
-/**
- * Display graph
- */
-std::ostream &operator<<(std::ostream &os, const AdjMatrixGraph &obj) {
-    for (std::size_t i = 0; i < obj.number_of_vertices; ++i) {
-        for (std::size_t j = 0; j < obj.number_of_vertices; ++j) {
-            os << i << " " << j << " " << obj.adj_matrix[i][j] << std::endl;
-        }
-    }
-    return os;
-}
 
 /**
  * @brief Insert new edge to the graph
@@ -274,6 +263,14 @@ bool AdjMatrixGraph::remove_vertex(std::size_t id) {
 
     return true;
 
+}
+
+void AdjMatrixGraph::print() const {
+    for (std::size_t i = 0; i < this->number_of_vertices; ++i) {
+        for (std::size_t j = 0; j < this->number_of_vertices; ++j) {
+            std::cout << i << " " << j << " " << this->adj_matrix[i][j] << std::endl;
+        }
+    }
 }
 
 

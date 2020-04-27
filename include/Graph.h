@@ -54,6 +54,8 @@ public:
 
     virtual bool vertex_replace(int old_data, int new_data);
 
+    virtual void print() const= 0;
+
 };
 
 

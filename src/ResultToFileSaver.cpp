@@ -41,22 +41,6 @@ void ResultToFileSaver::SaveTime(double *time) {
 }
 
 
-void ResultToFileSaver::setSize(size_t size) {
-    ResultToFileSaver::size = size;
-}
-
-void ResultToFileSaver::setType(const std::string &type) {
-    ResultToFileSaver::type = type;
-}
-
-void ResultToFileSaver::setDensity(double density) {
-    ResultToFileSaver::density = density;
-}
-
-void ResultToFileSaver::setInstances(int instances) {
-    ResultToFileSaver::instances = instances;
-}
-
 void ResultToFileSaver::SaveAlgorithmResults(std::unique_ptr<Pair[]> &result) {
     static int curr_instance = 1;
     std::ofstream stream;
@@ -81,6 +65,21 @@ void ResultToFileSaver::SaveAlgorithmResults(std::unique_ptr<Pair[]> &result) {
     ++curr_instance;
 }
 
+void ResultToFileSaver::setSize(size_t size) {
+    ResultToFileSaver::size = size;
+}
+
+void ResultToFileSaver::setType(const std::string &type) {
+    ResultToFileSaver::type = type;
+}
+
+void ResultToFileSaver::setDensity(double density) {
+    ResultToFileSaver::density = density;
+}
+
+void ResultToFileSaver::setInstances(int instances) {
+    ResultToFileSaver::instances = instances;
+}
 
 
 

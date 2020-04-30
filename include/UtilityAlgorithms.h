@@ -14,10 +14,10 @@
 #include <fstream>
 #include "MyPair.h"
 #include "GraphBuilder.h"
+#include <stdexcept>
 
 namespace utility {
 
-    //TODO implement own pair
     typedef MyPair<int32_t, List<std::size_t>> Pair;
 
     /**
@@ -42,7 +42,13 @@ namespace utility {
 
     }
 
-
+    /**
+     * @brief Find shortest path between each vertex of the graph
+     * @param graph
+     * @param source_id
+     * @return Array of pairs where pair[n].first is cost
+     *         pair[n].second is route to n vertex
+     */
     std::unique_ptr<Pair[]> BellmanFord(Graph &graph, std::size_t source_id) {
 
         auto edges = graph.get_edges();
@@ -77,7 +83,7 @@ namespace utility {
         }
 
         //At this point negative cycle must have occurred - throw exception:
-        throw;
+        throw std::logic_error("Negative cycle found! (Bellman-Ford algorithm)");
 
     }
 
@@ -90,12 +96,12 @@ namespace utility {
     std::unique_ptr<Graph> ReadGraphFromFile(GraphType type, int &source_vertex) {
 
 
-        const std::string path = "graph_reading/graph.txt";
+        const std::string path = "graph_reading/graph.txt"; //default file_path
         List<int> first_line_data;
         List<GraphEdge> edges;
         std::unique_ptr<Graph> graph;
 
-
+        //open file
         std::ifstream stream;
         stream.open(path.c_str(), std::ios::out | std::ios::app);
         if (stream.fail()) {

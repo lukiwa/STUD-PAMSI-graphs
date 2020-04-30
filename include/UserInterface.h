@@ -12,21 +12,23 @@
 #include <memory>
 #include <chrono>
 #include "ResultToFileSaver.h"
+#include <stdexcept>
 
 class UserInterface {
 private:
     GraphBuilder builder;
     std::unique_ptr<Graph> graph;
     ResultToFileSaver saver;
-    int instances;
-    int source_vertex = 0;
-    double *time;
-    bool write_result;
+    int instances;          //number of graph instances to be generated
+    int source_vertex = 0;  //starting vertex for Bellman-Ford algorithm
+    double *time;           //array of measured algorithm time
+    bool write_result;      //write result to file?
 
 
     bool Parse(int argc, char **argv);
 
-    GraphType RecogniseType(std::string option) const;
+    GraphType RecogniseType(const std::string &option) const;
+
     void PerformDemo();
 
 public:

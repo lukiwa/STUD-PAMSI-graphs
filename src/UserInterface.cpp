@@ -46,7 +46,8 @@ bool UserInterface::Parse(int argc, char **argv) {
              "If user want to read graph from file should only specify read path, optionally result path")
             ("xdemo", "Perform demo of graph methods")
             ("write,w", "Write shortest path to file")
-            ("read,r", po::value<std::string>(), "Read graph from file then terminates program")
+            ("read,r", po::value<std::string>(),
+             "Read graph from file then terminates program (specify LIST or MATRIX)")
             ("type,t", po::value<std::string>(), "Graph type - [LIST, MATRIX]")
             ("size,s", po::value<std::size_t>(), "Number of graph vertices")
             ("density,d", po::value<double>(), "Graph density (eg. 0.5 = 50%)")

@@ -10,7 +10,7 @@
 #include "RandomGraphGenerator.h"
 
 enum GraphType {
-    LIST, MATRIX, UNRECOGNISED
+    LIST, MATRIX
 };
 
 class GraphBuilder {

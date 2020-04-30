@@ -135,22 +135,9 @@ CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphVertex.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphVertex.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphVertex.cpp -o CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphVertex.cpp.s
 
-CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.o: CMakeFiles/STUD_PAMSI_graphs.dir/flags.make
-CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.o: ../src/GraphFileManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.o -c /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphFileManager.cpp
-
-CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphFileManager.cpp > CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.i
-
-CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphFileManager.cpp -o CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.s
-
 CMakeFiles/STUD_PAMSI_graphs.dir/src/RandomGraphGenerator.cpp.o: CMakeFiles/STUD_PAMSI_graphs.dir/flags.make
 CMakeFiles/STUD_PAMSI_graphs.dir/src/RandomGraphGenerator.cpp.o: ../src/RandomGraphGenerator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/STUD_PAMSI_graphs.dir/src/RandomGraphGenerator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/STUD_PAMSI_graphs.dir/src/RandomGraphGenerator.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/STUD_PAMSI_graphs.dir/src/RandomGraphGenerator.cpp.o -c /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/RandomGraphGenerator.cpp
 
 CMakeFiles/STUD_PAMSI_graphs.dir/src/RandomGraphGenerator.cpp.i: cmake_force
@@ -163,7 +150,7 @@ CMakeFiles/STUD_PAMSI_graphs.dir/src/RandomGraphGenerator.cpp.s: cmake_force
 
 CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphBuilder.cpp.o: CMakeFiles/STUD_PAMSI_graphs.dir/flags.make
 CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphBuilder.cpp.o: ../src/GraphBuilder.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphBuilder.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphBuilder.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphBuilder.cpp.o -c /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphBuilder.cpp
 
 CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphBuilder.cpp.i: cmake_force
@@ -176,7 +163,7 @@ CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphBuilder.cpp.s: cmake_force
 
 CMakeFiles/STUD_PAMSI_graphs.dir/src/UserInterface.cpp.o: CMakeFiles/STUD_PAMSI_graphs.dir/flags.make
 CMakeFiles/STUD_PAMSI_graphs.dir/src/UserInterface.cpp.o: ../src/UserInterface.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/STUD_PAMSI_graphs.dir/src/UserInterface.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/STUD_PAMSI_graphs.dir/src/UserInterface.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/STUD_PAMSI_graphs.dir/src/UserInterface.cpp.o -c /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/UserInterface.cpp
 
 CMakeFiles/STUD_PAMSI_graphs.dir/src/UserInterface.cpp.i: cmake_force
@@ -189,7 +176,7 @@ CMakeFiles/STUD_PAMSI_graphs.dir/src/UserInterface.cpp.s: cmake_force
 
 CMakeFiles/STUD_PAMSI_graphs.dir/src/ResultToFileSaver.cpp.o: CMakeFiles/STUD_PAMSI_graphs.dir/flags.make
 CMakeFiles/STUD_PAMSI_graphs.dir/src/ResultToFileSaver.cpp.o: ../src/ResultToFileSaver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/STUD_PAMSI_graphs.dir/src/ResultToFileSaver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/STUD_PAMSI_graphs.dir/src/ResultToFileSaver.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/STUD_PAMSI_graphs.dir/src/ResultToFileSaver.cpp.o -c /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/ResultToFileSaver.cpp
 
 CMakeFiles/STUD_PAMSI_graphs.dir/src/ResultToFileSaver.cpp.i: cmake_force
@@ -208,7 +195,6 @@ STUD_PAMSI_graphs_OBJECTS = \
 "CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphEdge.cpp.o" \
 "CMakeFiles/STUD_PAMSI_graphs.dir/src/Graph.cpp.o" \
 "CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphVertex.cpp.o" \
-"CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.o" \
 "CMakeFiles/STUD_PAMSI_graphs.dir/src/RandomGraphGenerator.cpp.o" \
 "CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphBuilder.cpp.o" \
 "CMakeFiles/STUD_PAMSI_graphs.dir/src/UserInterface.cpp.o" \
@@ -223,7 +209,6 @@ STUD_PAMSI_graphs: CMakeFiles/STUD_PAMSI_graphs.dir/src/AdjMatrixGraph.cpp.o
 STUD_PAMSI_graphs: CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphEdge.cpp.o
 STUD_PAMSI_graphs: CMakeFiles/STUD_PAMSI_graphs.dir/src/Graph.cpp.o
 STUD_PAMSI_graphs: CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphVertex.cpp.o
-STUD_PAMSI_graphs: CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.o
 STUD_PAMSI_graphs: CMakeFiles/STUD_PAMSI_graphs.dir/src/RandomGraphGenerator.cpp.o
 STUD_PAMSI_graphs: CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphBuilder.cpp.o
 STUD_PAMSI_graphs: CMakeFiles/STUD_PAMSI_graphs.dir/src/UserInterface.cpp.o
@@ -231,7 +216,7 @@ STUD_PAMSI_graphs: CMakeFiles/STUD_PAMSI_graphs.dir/src/ResultToFileSaver.cpp.o
 STUD_PAMSI_graphs: CMakeFiles/STUD_PAMSI_graphs.dir/build.make
 STUD_PAMSI_graphs: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
 STUD_PAMSI_graphs: CMakeFiles/STUD_PAMSI_graphs.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable STUD_PAMSI_graphs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable STUD_PAMSI_graphs"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/STUD_PAMSI_graphs.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

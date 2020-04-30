@@ -258,33 +258,6 @@ src/GraphEdge.cpp.s:
 	$(MAKE) -f CMakeFiles/STUD_PAMSI_graphs.dir/build.make CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphEdge.cpp.s
 .PHONY : src/GraphEdge.cpp.s
 
-src/GraphFileManager.o: src/GraphFileManager.cpp.o
-
-.PHONY : src/GraphFileManager.o
-
-# target to build an object file
-src/GraphFileManager.cpp.o:
-	$(MAKE) -f CMakeFiles/STUD_PAMSI_graphs.dir/build.make CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.o
-.PHONY : src/GraphFileManager.cpp.o
-
-src/GraphFileManager.i: src/GraphFileManager.cpp.i
-
-.PHONY : src/GraphFileManager.i
-
-# target to preprocess a source file
-src/GraphFileManager.cpp.i:
-	$(MAKE) -f CMakeFiles/STUD_PAMSI_graphs.dir/build.make CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.i
-.PHONY : src/GraphFileManager.cpp.i
-
-src/GraphFileManager.s: src/GraphFileManager.cpp.s
-
-.PHONY : src/GraphFileManager.s
-
-# target to generate assembly for a file
-src/GraphFileManager.cpp.s:
-	$(MAKE) -f CMakeFiles/STUD_PAMSI_graphs.dir/build.make CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.s
-.PHONY : src/GraphFileManager.cpp.s
-
 src/GraphVertex.o: src/GraphVertex.cpp.o
 
 .PHONY : src/GraphVertex.o
@@ -444,9 +417,6 @@ help:
 	@echo "... src/GraphEdge.o"
 	@echo "... src/GraphEdge.i"
 	@echo "... src/GraphEdge.s"
-	@echo "... src/GraphFileManager.o"
-	@echo "... src/GraphFileManager.i"
-	@echo "... src/GraphFileManager.s"
 	@echo "... src/GraphVertex.o"
 	@echo "... src/GraphVertex.i"
 	@echo "... src/GraphVertex.s"

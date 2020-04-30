@@ -42,9 +42,6 @@ CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphBuilder.cpp.o: ../src/GraphBuilder.cpp
 CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphEdge.cpp.o: ../include/GraphEdge.h
 CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphEdge.cpp.o: ../src/GraphEdge.cpp
 
-CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.o: ../include/GraphFileManager.h
-CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.o: ../src/GraphFileManager.cpp
-
 CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphVertex.cpp.o: ../include/GraphVertex.h
 CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphVertex.cpp.o: ../src/GraphVertex.cpp
 

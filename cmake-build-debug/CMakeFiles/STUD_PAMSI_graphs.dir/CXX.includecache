@@ -50,10 +50,6 @@ iostream
 sstream
 -
 
-../include/GraphFileManager.h
-string
--
-
 ../include/GraphVertex.h
 iostream
 -
@@ -117,6 +113,8 @@ chrono
 -
 ResultToFileSaver.h
 ../include/ResultToFileSaver.h
+stdexcept
+-
 
 ../include/UtilityAlgorithms.h
 List.h
@@ -135,38 +133,12 @@ MyPair.h
 ../include/MyPair.h
 GraphBuilder.h
 ../include/GraphBuilder.h
-
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/AdjListGraph.cpp
-AdjListGraph.h
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/AdjListGraph.h
-
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/AdjMatrixGraph.cpp
-AdjMatrixGraph.h
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/AdjMatrixGraph.h
-
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/Graph.cpp
-Graph.h
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/Graph.h
+stdexcept
+-
 
 /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphBuilder.cpp
 GraphBuilder.h
 /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphBuilder.h
-
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphEdge.cpp
-GraphEdge.h
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphEdge.h
-
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphFileManager.cpp
-GraphFileManager.h
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphFileManager.h
-
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphVertex.cpp
-GraphVertex.h
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphVertex.h
-
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/RandomGraphGenerator.cpp
-RandomGraphGenerator.h
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/RandomGraphGenerator.h
 
 /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/ResultToFileSaver.cpp
 iomanip
@@ -181,27 +153,9 @@ UserInterface.h
 /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/UserInterface.h
 
 /home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/main.cpp
-iostream
--
-AdjListGraph.h
--
-AdjMatrixGraph.h
--
-List.h
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/List.h
 chrono
 -
 algorithm
--
-random
--
-RandomGraphGenerator.h
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/RandomGraphGenerator.h
-GraphBuilder.h
-/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphBuilder.h
-boost/program_options.hpp
--
-string
 -
 UserInterface.h
 -

@@ -101,9 +101,6 @@
 		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/GraphEdge.h">
 			<Option target="STUD_PAMSI_graphs"/>
 		</Unit>
-		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/GraphFileManager.h">
-			<Option target="STUD_PAMSI_graphs"/>
-		</Unit>
 		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/include/GraphVertex.h">
 			<Option target="STUD_PAMSI_graphs"/>
 		</Unit>
@@ -144,9 +141,6 @@
 			<Option target="STUD_PAMSI_graphs"/>
 		</Unit>
 		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphEdge.cpp">
-			<Option target="STUD_PAMSI_graphs"/>
-		</Unit>
-		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphFileManager.cpp">
 			<Option target="STUD_PAMSI_graphs"/>
 		</Unit>
 		<Unit filename="/home/lukasz-lap/Pulpit/Programowanie/Repozytoria_GIT/STUD_PAMSI_graphs/src/GraphVertex.cpp">

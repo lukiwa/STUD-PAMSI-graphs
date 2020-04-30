@@ -4,7 +4,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/STUD_PAMSI_graphs.dir/src/Graph.cpp.o"
   "CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphBuilder.cpp.o"
   "CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphEdge.cpp.o"
-  "CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphFileManager.cpp.o"
   "CMakeFiles/STUD_PAMSI_graphs.dir/src/GraphVertex.cpp.o"
   "CMakeFiles/STUD_PAMSI_graphs.dir/src/RandomGraphGenerator.cpp.o"
   "CMakeFiles/STUD_PAMSI_graphs.dir/src/ResultToFileSaver.cpp.o"
